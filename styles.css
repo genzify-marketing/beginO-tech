@@ -403,6 +403,17 @@ a {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+#mobileMenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background: var(--surface);
+}
+
+#mobileMenu.open {
+  max-height: 450px;
+}
+
 .theme-toggle-btn:hover {
   transform: scale(1.12) rotate(15deg);
 }
