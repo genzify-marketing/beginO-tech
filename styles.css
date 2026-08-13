@@ -1,0 +1,752 @@
+/* ==========================================================================
+   GenZify Marketing — Modern Premium Design System & CSS Architecture
+   Theme: Dual-Theme (Light & Dark) with Electric Violet Accent (#7C3AED)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Theme Variables & Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Default Dark Theme Tokens */
+  --bg: #09090b;
+  --surface: #121217;
+  --surface-2: #1c1c24;
+  --surface-glass: rgba(18, 18, 23, 0.7);
+  --text: #f4f4f6;
+  --text-muted: #a1a1aa;
+  --text-subtle: #71717a;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(124, 58, 237, 0.4);
+  
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+  --primary-light: rgba(124, 58, 237, 0.15);
+  --primary-gradient: linear-gradient(135deg, #7c3aed, #a78bfa);
+  --accent: #c084fc;
+  --accent-light: rgba(192, 132, 252, 0.15);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+  --shadow-primary: 0 10px 30px -5px rgba(124, 58, 237, 0.4);
+  
+  --noise-opacity: 0.03;
+  --glow-color: rgba(124, 58, 237, 0.18);
+  --grid-line: rgba(255, 255, 255, 0.04);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+  
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+[data-theme="light"] {
+  /* Light Theme Tokens */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --surface-glass: rgba(255, 255, 255, 0.85);
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-subtle: #64748b;
+  --border: rgba(15, 23, 42, 0.1);
+  --border-hover: rgba(124, 58, 237, 0.4);
+  
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+  --primary-light: rgba(124, 58, 237, 0.1);
+  --primary-gradient: linear-gradient(135deg, #7c3aed, #9333ea);
+  --accent: #9333ea;
+  --accent-light: rgba(147, 51, 234, 0.1);
+  
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.1);
+  --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+  --shadow-primary: 0 10px 30px -5px rgba(124, 58, 237, 0.25);
+  
+  --noise-opacity: 0.015;
+  --glow-color: rgba(124, 58, 237, 0.08);
+  --grid-line: rgba(15, 23, 42, 0.03);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Core Base Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  cursor: default;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* Focus styles for Accessibility */
+:focus-visible {
+  outline: 2.5px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 20px;
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  z-index: 10000;
+  font-weight: 600;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Custom Scrollbar & Noise Overlay
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  border-radius: 10px;
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: var(--noise-opacity);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scroll Progress Bar */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--primary-gradient);
+  z-index: 9999;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   4. Cursor Glow & Custom Pointer
+   -------------------------------------------------------------------------- */
+#cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+  will-change: transform;
+}
+
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity 0.3s ease, width 0.35s cubic-bezier(.2,.8,.2,1.3), height 0.35s cubic-bezier(.2,.8,.2,1.3), background 0.35s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+#cursor-dot.expand {
+  width: 74px;
+  height: 74px;
+  background: var(--primary);
+}
+
+#cursorLabel {
+  opacity: 0;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: opacity 0.25s ease;
+  white-space: nowrap;
+}
+
+#cursor-dot.expand #cursorLabel {
+  opacity: 1;
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  #cursor-glow, #cursor-dot {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Glassmorphism & Card Utilities
+   -------------------------------------------------------------------------- */
+.glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--border);
+  transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: var(--radius-lg);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, transparent, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: background 0.45s ease;
+  pointer-events: none;
+}
+
+.gradient-border:hover::before {
+  background: var(--primary-gradient);
+}
+
+.grad-text {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+.btn-grad {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--primary-gradient);
+  background-size: 200% 100%;
+  color: #ffffff !important;
+  transition: background-position 0.5s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: var(--shadow-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-grad:hover {
+  background-position: 100% 0;
+  box-shadow: 0 12px 35px -4px rgba(124, 58, 237, 0.6);
+}
+
+.btn-grad::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.75s cubic-bezier(.2,.8,.2,1);
+  pointer-events: none;
+}
+
+.btn-grad:hover::after {
+  left: 130%;
+}
+
+.ripple-el {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(255, 255, 255, 0.5);
+  animation: ripple-anim 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-anim {
+  to {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+.lift-card {
+  transition: transform 0.4s cubic-bezier(.2,.8,.2,1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.lift-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-hover);
+}
+
+/* --------------------------------------------------------------------------
+   6. Navigation Bar & Theme Toggle
+   -------------------------------------------------------------------------- */
+#navbar {
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+#navbar.scrolled {
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-link {
+  position: relative;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--text);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: var(--primary-gradient);
+  transition: width 0.35s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+.theme-toggle-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.12) rotate(15deg);
+}
+
+.theme-toggle-btn svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* Theme Icon Display & High-Contrast Colors:
+   - Dark Mode  -> Golden Yellow Crescent Moon Logo (#FACC15)
+   - Light Mode -> Electric Violet Sun Logo with Rays (#7C3AED)
+*/
+[data-theme="dark"] .theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  color: #facc15;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+  display: block !important;
+  fill: #facc15 !important;
+  stroke: #facc15 !important;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  display: none !important;
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  background: rgba(124, 58, 237, 0.12);
+  border: 1.5px solid rgba(124, 58, 237, 0.3);
+  color: #7c3aed;
+}
+
+[data-theme="light"] .theme-icon-moon {
+  display: none !important;
+}
+
+[data-theme="light"] .theme-icon-sun {
+  display: block !important;
+  fill: none !important;
+  stroke: #7c3aed !important;
+  stroke-width: 2.2px !important;
+}
+
+/* Mobile Menu */
+#mobileMenu {
+  transform: translateY(-12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+#mobileMenu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   7. Hero Section & Animated Backgrounds
+   -------------------------------------------------------------------------- */
+#home {
+  position: relative;
+}
+
+.mesh-bg {
+  background-color: var(--bg);
+  position: relative;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 40%, transparent 85%);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(192, 132, 252, 0.25));
+  animation: morph 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 42% 58% 65% 35% / 45% 45% 55% 55%; transform: rotate(0deg) scale(1); }
+  50% { border-radius: 65% 35% 40% 60% / 60% 40% 60% 40%; transform: rotate(180deg) scale(1.1); }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.5;
+  animation: float-p linear infinite;
+}
+
+@keyframes float-p {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
+}
+
+#hero3d {
+  width: 100%;
+  height: 100%;
+}
+#hero3d canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+@media (max-width: 899px) {
+  #hero3d { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Form Controls & Inputs
+   -------------------------------------------------------------------------- */
+.field-wrap {
+  position: relative;
+}
+
+.field {
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem 0.875rem 2.75rem;
+  width: 100%;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+  background: var(--surface);
+}
+
+.field::placeholder {
+  color: transparent;
+}
+
+.field-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-subtle);
+  transition: color 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.field-wrap.is-textarea .field-icon {
+  top: 1.35rem;
+  transform: none;
+}
+
+.field:focus ~ .field-icon {
+  color: var(--primary);
+}
+
+.field-label {
+  position: absolute;
+  left: 2.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.875rem;
+  color: var(--text-subtle);
+  transition: all 0.25s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.field-wrap.is-textarea .field-label {
+  top: 1.35rem;
+  transform: none;
+}
+
+.field:focus ~ .field-label,
+.field:not(:placeholder-shown) ~ .field-label {
+  left: 1rem;
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--primary);
+  background: var(--surface);
+  padding: 0 6px;
+  border-radius: 4px;
+}
+
+.select-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   9. Floating Buttons & Utility Classes
+   -------------------------------------------------------------------------- */
+#floatingWhatsapp {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 60;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px -4px rgba(37, 211, 102, 0.5);
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+}
+
+#floatingWhatsapp:hover {
+  transform: scale(1.1) rotate(-6deg);
+  box-shadow: 0 12px 30px -4px rgba(37, 211, 102, 0.7);
+}
+
+#backToTop {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(.8);
+  transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s ease;
+}
+
+#backToTop.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+#backToTop:hover {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.social-icon {
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+.social-icon:hover {
+  transform: translateY(-6px) rotate(8deg);
+  background: var(--primary-gradient);
+  color: #ffffff !important;
+  box-shadow: var(--shadow-primary);
+}
+
+.section-pad {
+  padding-top: clamp(70px, 10vw, 120px);
+  padding-bottom: clamp(70px, 10vw, 120px);
+}
+
+.eyebrow {
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   10. About Section Logo Card
+   -------------------------------------------------------------------------- */
+.logo-showcase-wrap {
+  perspective: 1200px;
+}
+
+.logo-orb {
+  position: absolute;
+  z-index: -1;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-light), transparent 75%);
+  filter: blur(50px);
+  top: -12%;
+  right: -14%;
+  animation: logo-orb-float 15s ease-in-out infinite;
+}
+
+@keyframes logo-orb-float {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-18px, 22px) scale(1.08); }
+}
+
+.logo-card {
+  transition: transform 0.5s cubic-bezier(.2,.8,.2,1), box-shadow 0.5s ease;
+  transform-style: preserve-3d;
+}
+.logo-card.is-hovering {
+  box-shadow: var(--shadow-primary);
+}
+
+/* --------------------------------------------------------------------------
+   11. Reduced Motion Accessibility
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .blob, .particle, .hero-grid {
+    animation: none !important;
+  }
+}

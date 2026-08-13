@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GenZify Marketing — Digital Agency for the New Generation</title>
+  <meta name="description" content="GenZify Marketing is a modern digital agency offering Web Development, Digital Marketing, Graphic Design, Meta Ads, Google Ads, and SEO." />
+  <meta name="author" content="GenZify Marketing" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://genzifymarketing.com/" />
+  <meta property="og:title" content="GenZify Marketing — Digital Agency for the New Generation" />
+  <meta property="og:description" content="A young digital agency crafting high-converting websites, digital marketing strategies, and distinct brand identities." />
+  <meta property="og:image" content="assets/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GenZify Marketing — Digital Agency for the New Generation" />
+  <meta name="twitter:description" content="High-converting Web Development, Meta Ads, Google Ads, SEO, and Graphic Design." />
+  <meta name="twitter:image" content="assets/logo.png" />
+
+  <link rel="canonical" href="https://genzifymarketing.com/" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64x64.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+  <!-- Three.js Module Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <!-- Tailwind CDN & Theme Mapping -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: 'var(--bg)',
+            surface: 'var(--surface)',
+            'surface-2': 'var(--surface-2)',
+            primary: 'var(--primary)',
+            accent: 'var(--accent)',
+            muted: 'var(--text-muted)',
+            subtle: 'var(--text-subtle)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Inline Theme Flash Prevention -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('genzify-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', initialTheme);
+    })();
+  </script>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "GenZify Marketing",
+    "image": "assets/logo.png",
+    "description": "Digital agency offering Web Development, Digital Marketing, Graphic Design, Meta Ads, Google Ads, and SEO.",
+    "telephone": ["+916381167474", "+919080203398"],
+    "email": "info.genzifymarketing@gmail.com",
+    "url": "https://genzifymarketing.com/",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Madurai - Paramakudi",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://instagram.com/genzifymarketing",
+      "https://linkedin.com/company/genzifymarketing",
+      "https://pinterest.com/genzifymarketing"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Skip Link for Keyboard Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Noise Overlay & Progress Bar -->
+  <div class="noise"></div>
+  <div id="progress-bar"></div>
+
+  <!-- Custom Cursor -->
+  <div id="cursor-glow"></div>
+  <div id="cursor-dot"><span id="cursorLabel"></span></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-4" aria-label="Main Navigation">
+      <a href="#home" class="flex items-center gap-3 group" aria-label="GenZify Marketing Home">
+        <img src="assets/logo.png" alt="GenZify Marketing Logo" class="w-10 h-10 object-contain rounded-full border border-primary/30 transition-transform group-hover:scale-105" />
+        <span class="font-heading font-bold text-xl tracking-tight" style="color: var(--text);">GenZify <span class="grad-text">Marketing</span></span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#process" class="nav-link">Process</a>
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#why" class="nav-link">Why Us</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-4">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle color theme" title="Toggle Light/Dark Theme">
+          <svg class="w-5 h-5 theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="w-5 h-5 theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <a href="#contact" class="btn-grad font-semibold px-6 py-2.5 rounded-full text-sm">
+          Start a Project <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Controls -->
+      <div class="flex items-center gap-3 md:hidden">
+        <button id="themeToggleMobile" onclick="document.getElementById('themeToggle').click()" class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle Light/Dark Theme">
+          <svg class="w-5 h-5 theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="w-5 h-5 theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <button id="menuBtn" class="p-2 focus:outline-none" style="color: var(--text);" aria-expanded="false" aria-label="Toggle navigation menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileMenu" class="md:hidden border-b">
+      <div class="px-6 py-6 space-y-4">
+        <a href="#about" class="mobile-link block text-lg font-medium">About</a>
+        <a href="#services" class="mobile-link block text-lg font-medium">Services</a>
+        <a href="#process" class="mobile-link block text-lg font-medium">Process</a>
+        <a href="#work" class="mobile-link block text-lg font-medium">Work</a>
+        <a href="#why" class="mobile-link block text-lg font-medium">Why Us</a>
+        <a href="#contact" class="mobile-link block text-lg font-medium">Contact</a>
+        <a href="#contact" class="mobile-link btn-grad w-full py-3 rounded-full text-center font-semibold mt-4 block">
+          Start a Project
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main id="main-content">
+    
+    <!-- ============ HERO SECTION ============ -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden mesh-bg pt-28 pb-16">
+      <div class="hero-grid"></div>
+      
+      <!-- Background Blobs -->
+      <div class="blob w-[400px] h-[400px] -top-20 -left-20 opacity-40"></div>
+      <div class="blob w-[350px] h-[350px] top-1/3 -right-20 opacity-30"></div>
+
+      <!-- Particle Container -->
+      <div id="particles" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+
+      <!-- Three.js 3D Hero Canvas Container -->
+      <div id="hero3d" class="absolute inset-0 z-[2] pointer-events-none overflow-hidden"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full">
+        <div class="max-w-3xl">
+          <div class="hero-reveal mb-6">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-semibold uppercase tracking-widest">
+              <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span> Digital Agency for the New Generation
+            </span>
+          </div>
+
+          <h1 class="hero-reveal font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-tight">
+            Creative Strategy & <span class="grad-text">Modern Execution</span> for Growth-Minded Brands.
+          </h1>
+
+          <p class="hero-reveal mt-6 text-lg md:text-xl leading-relaxed text-muted max-w-2xl">
+            GenZify Marketing is a digital agency built by digital natives. We engineer high-converting websites, performance marketing campaigns, and distinct visual systems that drive revenue.
+          </p>
+
+          <div class="hero-reveal mt-8 flex flex-wrap items-center gap-4">
+            <a href="#contact" class="btn-grad font-semibold px-8 py-4 rounded-full text-base">
+              Start a Project <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+            </a>
+            <a href="#services" class="glass font-semibold px-8 py-4 rounded-full text-base hover:border-primary/50 transition-colors">
+              Explore Services <i data-lucide="chevron-down" class="w-4 h-4 inline-block ml-1"></i>
+            </a>
+          </div>
+
+          <!-- Trust Signals & Capability Proof -->
+          <div class="hero-reveal mt-14 pt-8 border-t border-border grid grid-cols-3 gap-6 max-w-lg">
+            <div>
+              <div class="font-heading font-bold text-3xl text-primary">6</div>
+              <div class="text-xs text-muted mt-1 uppercase tracking-wider font-medium">Core Services</div>
+            </div>
+            <div>
+              <div class="font-heading font-bold text-3xl text-primary">100%</div>
+              <div class="text-xs text-muted mt-1 uppercase tracking-wider font-medium">Custom Strategy</div>
+            </div>
+            <div>
+              <div class="font-heading font-bold text-3xl text-primary">2025</div>
+              <div class="text-xs text-muted mt-1 uppercase tracking-wider font-medium">Founded</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT SECTION ============ -->
+    <section id="about" class="section-pad relative bg-surface">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-16 items-center">
+        <div data-aos="fade-right">
+          <span class="eyebrow">Who We Are</span>
+          <h2 class="font-heading font-bold text-3xl md:text-5xl mt-3 leading-tight">
+            A young studio, <span class="grad-text">chasing craft</span> — not clout.
+          </h2>
+          <p class="mt-6 text-muted text-base md:text-lg leading-relaxed">
+            GenZify Marketing is a newly founded digital agency built by people who grew up online and know exactly how attention is earned. We're not the biggest name in the room — yet. What we bring instead is energy, obsessive attention to detail, and a genuine hunger to make every project exceptional.
+          </p>
+          <p class="mt-4 text-muted text-base md:text-lg leading-relaxed">
+            We're just getting started, and that's our biggest strength. Every client gets our full focus, fresh thinking, and the kind of care that comes from a team dedicated to proving itself.
+          </p>
+
+          <div class="mt-8 grid sm:grid-cols-2 gap-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                <i data-lucide="sparkles" class="w-5 h-5 text-primary"></i>
+              </div>
+              <div>
+                <h3 class="font-heading font-semibold text-base">Fresh Perspective</h3>
+                <p class="text-xs text-muted mt-1">No stale playbooks, just current culture and data.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                <i data-lucide="heart-handshake" class="w-5 h-5 text-primary"></i>
+              </div>
+              <div>
+                <h3 class="font-heading font-semibold text-base">Honest Partnership</h3>
+                <p class="text-xs text-muted mt-1">Real talk, transparent communication, zero fluff.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Logo Showcase Card -->
+        <div data-aos="fade-left" class="logo-showcase-wrap relative">
+          <div class="logo-orb"></div>
+          <div id="logoCard" class="logo-card relative rounded-20 overflow-hidden aspect-[4/5] glass shadow-2xl gradient-border p-2">
+            <div class="w-full h-full rounded-20 overflow-hidden relative bg-surface-2 flex items-center justify-center p-8">
+              <img id="logoImg" src="assets/about-logo.jpg" alt="GenZify Marketing Studio Emblem" class="w-full h-auto object-contain rounded-xl shadow-lg" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES SECTION ============ -->
+    <section id="services" class="section-pad relative">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <span class="eyebrow">Our Capabilities</span>
+          <h2 class="font-heading font-bold text-3xl md:text-5xl mt-3">
+            End-to-end digital solutions <span class="grad-text">built to scale.</span>
+          </h2>
+          <p class="mt-4 text-muted text-base">
+            We focus on core digital disciplines that directly impact brand growth and customer acquisition.
+          </p>
+        </div>
+
+        <!-- Rendered dynamically via script.js -->
+        <div id="servicesGrid" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS SECTION ============ -->
+    <section id="process" class="section-pad relative bg-surface">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <span class="eyebrow">How We Work</span>
+          <h2 class="font-heading font-bold text-3xl md:text-5xl mt-3">
+            A transparent 6-step framework for <span class="grad-text">repeatable results.</span>
+          </h2>
+          <p class="mt-4 text-muted text-base">
+            Agile, collaborative, and focused on momentum from day one.
+          </p>
+        </div>
+
+        <!-- Rendered dynamically via script.js -->
+        <div id="processGrid" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ============ PORTFOLIO / WORK SECTION ============ -->
+    <section id="work" class="section-pad relative">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <span class="eyebrow">Selected Work</span>
+          <h2 class="font-heading font-bold text-3xl md:text-5xl mt-3">
+            Crafting digital experiences that <span class="grad-text">stand out.</span>
+          </h2>
+        </div>
+
+        <!-- Work Coming Soon Showcase -->
+        <div data-aos="zoom-in" class="mt-12 glass rounded-20 p-12 text-center gradient-border max-w-4xl mx-auto relative overflow-hidden">
+          <div class="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-6">
+            <i data-lucide="sparkles" class="w-8 h-8"></i>
+          </div>
+          <h3 class="font-heading font-bold text-2xl md:text-3xl mb-4">Case Studies & Client Work Coming Soon</h3>
+          <p class="text-muted max-w-xl mx-auto mb-8 text-base">
+            We're currently packaging case studies for our latest web applications and paid ad campaigns. Want to see a live preview or sample work relevant to your industry?
+          </p>
+          <a href="#contact" class="btn-grad font-semibold px-8 py-3.5 rounded-full inline-flex items-center gap-2">
+            Request Case Studies <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY US SECTION ============ -->
+    <section id="why" class="section-pad relative bg-surface">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <span class="eyebrow">Why GenZify</span>
+          <h2 class="font-heading font-bold text-3xl md:text-5xl mt-3">
+            Small team energy, <span class="grad-text">big-agency ambition.</span>
+          </h2>
+        </div>
+
+        <div id="whyGrid" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="lift-card gradient-border glass rounded-20 p-7 flex flex-col h-full" data-aos="fade-up" data-aos-delay="0">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <i data-lucide="zap" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading font-semibold text-lg">Fast Turnaround</h3>
+            <p class="mt-2 text-sm text-muted">Agile workflow, no bureaucracy, no waiting weeks for drafts.</p>
+          </div>
+          <div class="lift-card gradient-border glass rounded-20 p-7 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <i data-lucide="eye" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading font-semibold text-lg">Full Transparency</h3>
+            <p class="mt-2 text-sm text-muted">Clear deliverables and honest feedback at every stage.</p>
+          </div>
+          <div class="lift-card gradient-border glass rounded-20 p-7 flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <i data-lucide="gem" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading font-semibold text-lg">Detail Obsessed</h3>
+            <p class="mt-2 text-sm text-muted">Every line of code, ad visual, and copy checked and refined.</p>
+          </div>
+          <div class="lift-card gradient-border glass rounded-20 p-7 flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <i data-lucide="users" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading font-semibold text-lg">Direct Access</h3>
+            <p class="mt-2 text-sm text-muted">You work directly with the strategists and creators, always.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VISION & MISSION ============ -->
+    <section id="vision" class="section-pad relative">
+      <div class="max-w-6xl mx-auto px-6 md:px-10">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div data-aos="zoom-in" class="glass rounded-20 p-8 md:p-10 gradient-border">
+            <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6">
+              <i data-lucide="telescope" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading font-bold text-2xl mb-3">Our Vision</h3>
+            <p class="text-muted leading-relaxed">
+              To become a digital agency that ambitious brands trust from day one — known not for how long we've existed, but for the quality of work we consistently ship.
+            </p>
+          </div>
+          <div data-aos="zoom-in" data-aos-delay="150" class="glass rounded-20 p-8 md:p-10 gradient-border">
+            <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6">
+              <i data-lucide="target" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading font-bold text-2xl mb-3">Our Mission</h3>
+            <p class="text-muted leading-relaxed">
+              To give every client — regardless of size or budget — a genuinely thoughtful strategy, sharp design, and campaigns built around what actually moves their audience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA SECTION ============ -->
+    <section id="final-cta" class="section-pad relative bg-surface overflow-hidden">
+      <div class="max-w-5xl mx-auto px-6 md:px-10 text-center relative z-10" data-aos="zoom-in">
+        <h2 class="font-heading font-bold text-3xl sm:text-5xl leading-tight">
+          Ready to elevate your <span class="grad-text">digital presence?</span>
+        </h2>
+        <p class="mt-4 text-muted text-base md:text-lg max-w-2xl mx-auto">
+          Let's discuss your goals, explore concepts, and build a roadmap tailored to your brand.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center items-center gap-4">
+          <a href="https://wa.me/916381167474" target="_blank" rel="noopener noreferrer" class="btn-grad font-semibold px-8 py-4 rounded-full text-base inline-flex items-center gap-2">
+            Chat on WhatsApp <i data-lucide="message-circle" class="w-5 h-5"></i>
+          </a>
+          <a href="#contact" class="glass font-semibold px-8 py-4 rounded-full text-base hover:border-primary/50 transition-colors">
+            Contact Form <i data-lucide="arrow-down" class="w-4 h-4 inline-block ml-1"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT SECTION ============ -->
+    <section id="contact" class="section-pad relative">
+      <div class="max-w-6xl mx-auto px-6 md:px-10">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <span class="eyebrow">Get In Touch</span>
+          <h2 class="font-heading font-bold text-3xl md:text-5xl mt-3">
+            Let's make something <span class="grad-text">worth talking about.</span>
+          </h2>
+          <p class="mt-4 text-muted text-base">
+            Tell us a bit about your project. We read and respond to every message personally.
+          </p>
+        </div>
+
+        <div class="mt-12 grid lg:grid-cols-3 gap-10">
+          <!-- Form Area -->
+          <div class="lg:col-span-2" data-aos="fade-right">
+            <form id="contactForm" class="glass rounded-20 p-8 md:p-10 gradient-border space-y-6">
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div class="field-wrap">
+                  <i data-lucide="user" class="field-icon w-4 h-4"></i>
+                  <input required type="text" id="name" placeholder=" " class="field" />
+                  <label for="name" class="field-label">Full Name *</label>
+                </div>
+                <div class="field-wrap">
+                  <i data-lucide="mail" class="field-icon w-4 h-4"></i>
+                  <input required type="email" id="email" placeholder=" " class="field" />
+                  <label for="email" class="field-label">Email Address *</label>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div class="field-wrap">
+                  <i data-lucide="phone" class="field-icon w-4 h-4"></i>
+                  <input type="tel" id="phone" placeholder=" " class="field" />
+                  <label for="phone" class="field-label">Phone Number</label>
+                </div>
+                <div>
+                  <label for="service" class="select-label">Service Required</label>
+                  <div class="field-wrap">
+                    <i data-lucide="layers" class="field-icon w-4 h-4"></i>
+                    <select id="service" class="field appearance-none">
+                      <option value="Web Development">Web Development</option>
+                      <option value="Digital Marketing">Digital Marketing</option>
+                      <option value="Graphic Design">Graphic Design</option>
+                      <option value="Meta Ads">Meta Ads</option>
+                      <option value="Google Ads">Google Ads</option>
+                      <option value="SEO">SEO</option>
+                      <option value="Other">Other Inquiry</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="field-wrap is-textarea">
+                <i data-lucide="message-square" class="field-icon w-4 h-4"></i>
+                <textarea required id="message" rows="4" placeholder=" " class="field resize-none"></textarea>
+                <label for="message" class="field-label">Project Details *</label>
+              </div>
+
+              <button type="submit" data-cursor-text="Send" class="btn-grad font-semibold px-8 py-4 rounded-full w-full sm:w-auto">
+                Send via WhatsApp <i data-lucide="send" class="w-4 h-4"></i>
+              </button>
+              <p id="formNote" class="text-xs mt-2"></p>
+            </form>
+          </div>
+
+          <!-- Contact Info Sidebar -->
+          <div data-aos="fade-left" class="space-y-6">
+            <div class="glass rounded-20 p-8 gradient-border">
+              <h3 class="font-heading font-bold text-xl mb-6">Contact Information</h3>
+              <div class="space-y-5 text-sm">
+                <a href="tel:+916381167474" class="flex items-center gap-4 text-muted hover:text-primary transition-colors">
+                  <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                  </div>
+                  <span>+91 63811 67474</span>
+                </a>
+                <a href="tel:+919080203398" class="flex items-center gap-4 text-muted hover:text-primary transition-colors">
+                  <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                  </div>
+                  <span>+91 90802 03398</span>
+                </a>
+                <a href="mailto:info.genzifymarketing@gmail.com" class="flex items-center gap-4 text-muted hover:text-primary transition-colors break-all">
+                  <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                  </div>
+                  <span>info.genzifymarketing@gmail.com</span>
+                </a>
+                <div class="flex items-center gap-4 text-muted">
+                  <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                  </div>
+                  <span>Madurai – Paramakudi, IN</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Verified Social Links -->
+            <div class="glass rounded-20 p-8 gradient-border">
+              <h3 class="font-heading font-semibold text-lg mb-4">Follow Along</h3>
+              <div class="flex flex-wrap gap-3">
+                <a href="https://instagram.com/genzifymarketing" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://facebook.com/genzifymarketing" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://wa.me/916381167474" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-icon w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                </a>
+                <a href="https://pinterest.com/genzifymarketing" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" class="social-icon w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-surface border-t border-border pt-16 pb-8 text-sm">
+    <div class="max-w-7xl mx-auto px-6 md:px-10">
+      <div class="grid md:grid-cols-4 gap-10 pb-12 border-b border-border">
+        <div>
+          <a href="#home" class="flex items-center gap-3 mb-4">
+            <img src="assets/logo.png" alt="GenZify Marketing" class="w-8 h-8 rounded-full" />
+            <span class="font-heading font-bold text-lg" style="color: var(--text);">GenZify <span class="grad-text">Marketing</span></span>
+          </a>
+          <p class="text-muted text-xs leading-relaxed">
+            A digital agency engineered for growth-minded brands. Built on precision strategy and modern visual execution.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-semibold mb-4 text-base">Navigation</h4>
+          <ul class="space-y-2.5 text-muted">
+            <li><a href="#about" class="hover:text-primary transition-colors">About Us</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">Services</a></li>
+            <li><a href="#process" class="hover:text-primary transition-colors">Process</a></li>
+            <li><a href="#work" class="hover:text-primary transition-colors">Selected Work</a></li>
+            <li><a href="#why" class="hover:text-primary transition-colors">Why GenZify</a></li>
+            <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-semibold mb-4 text-base">Capabilities</h4>
+          <ul class="space-y-2.5 text-muted">
+            <li><a href="#services" class="hover:text-primary transition-colors">Web Development</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">Digital Marketing</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">Graphic Design</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">Meta Ads</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">Google Ads</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">SEO Optimization</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-semibold mb-4 text-base">Get In Touch</h4>
+          <ul class="space-y-2.5 text-muted">
+            <li>+91 63811 67474</li>
+            <li>info.genzifymarketing@gmail.com</li>
+            <li>Madurai – Paramakudi, IN</li>
+          </ul>
+          <div class="mt-4 flex items-center gap-3">
+            <a href="https://instagram.com/genzifymarketing" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-primary"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="https://linkedin.com/company/genzifymarketing" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-primary"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+            <a href="https://pinterest.com/genzifymarketing" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" class="hover:text-primary"><i data-lucide="share-2" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-subtle gap-4">
+        <p>&copy; 2026 GenZify Marketing. All rights reserved.</p>
+        <p>Crafted with precision for the modern digital era.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Buttons -->
+  <a href="https://wa.me/916381167474" target="_blank" rel="noopener noreferrer" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.99c-.002 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <button id="backToTop" aria-label="Scroll back to top" title="Back to Top">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
+  <!-- Application Scripts -->
+  <script src="script.js"></script>
+  <script type="module" src="hero3d.js"></script>
+</body>
+</html>
