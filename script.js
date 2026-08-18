@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GenZify Marketing — Core Interactive Logic & Application Engine
+   Begino Tech — Core Interactive Logic & Application Engine
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,14 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeIcon = document.getElementById('themeIcon');
   
   function getInitialTheme() {
-    const saved = localStorage.getItem('genzify-theme');
+    const saved = localStorage.getItem('begino-theme');
     if (saved) return saved;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('genzify-theme', theme);
+    localStorage.setItem('begino-theme', theme);
   }
 
   const currentTheme = getInitialTheme();
@@ -180,18 +180,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (servicesGrid) {
     services.forEach((s, i) => {
       const card = document.createElement('div');
-      card.className = 'service-card lift-card gradient-border glass rounded-20 p-8 flex flex-col h-full cursor-pointer';
+      card.className = 'service-card lift-card gradient-border glass rounded-20 p-6 flex flex-col h-full cursor-pointer';
       card.setAttribute('data-aos', 'fade-up');
-      card.setAttribute('data-aos-delay', (i % 3) * 100);
+      card.setAttribute('data-aos-delay', (i % 3) * 80);
 
       card.innerHTML = `
-        <div class="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6">
+        <div class="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
           ${s.svg}
         </div>
-        <h3 class="font-heading font-bold text-2xl mb-3">${s.title}</h3>
-        <p class="text-sm leading-relaxed mb-6">${s.desc}</p>
-        <a href="#contact" data-service="${s.title}" class="service-link mt-auto inline-flex items-center gap-2 text-primary font-semibold text-sm">
-          Discuss ${s.title} <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+        <h3 class="font-heading font-bold text-lg mb-2">${s.title}</h3>
+        <p class="text-sm leading-relaxed mb-5 text-muted">${s.desc}</p>
+        <a href="#contact" data-service="${s.title}" class="service-link mt-auto inline-flex items-center gap-2 text-primary font-semibold text-xs">
+          Learn more <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform"></i>
         </a>
       `;
       servicesGrid.appendChild(card);
@@ -232,13 +232,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (processGrid) {
     processSteps.forEach((p, i) => {
       const card = document.createElement('div');
-      card.className = 'lift-card gradient-border glass rounded-20 p-7 flex flex-col h-full relative';
+      card.className = 'lift-card gradient-border glass rounded-20 p-6 flex flex-col h-full relative';
       card.setAttribute('data-aos', 'fade-up');
-      card.setAttribute('data-aos-delay', (i % 3) * 100);
+      card.setAttribute('data-aos-delay', (i % 3) * 80);
 
       card.innerHTML = `
-        <span class="text-3xl font-heading font-extrabold text-primary mb-4 block">${p.num}</span>
-        <h3 class="font-heading font-semibold text-xl mb-2">${p.title}</h3>
+        <span class="text-2xl font-heading font-extrabold text-primary/20 mb-3 block">${p.num}</span>
+        <h3 class="font-heading font-semibold text-base mb-1.5">${p.title}</h3>
         <p class="text-sm text-muted leading-relaxed">${p.desc}</p>
       `;
       processGrid.appendChild(card);
@@ -273,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     attachTilt('.service-card');
     attachTilt('#processGrid > div');
     attachTilt('#whyGrid > div');
+    attachTilt('#heroLogoCard');
   }, 100);
 
   /* --------------------------------------------------------------------------
@@ -300,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Pre-fill WhatsApp message
-      const textMessage = `Hello GenZify Marketing! 👋\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone || 'N/A'}\n*Service Requested:* ${service}\n\n*Message:* ${message}`;
+      const textMessage = `Hello BegiNo Tech! 👋\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone || 'N/A'}\n*Service Requested:* ${service}\n\n*Message:* ${message}`;
       const encodedMsg = encodeURIComponent(textMessage);
       const whatsappUrl = `https://wa.me/916381167474?text=${encodedMsg}`;
 

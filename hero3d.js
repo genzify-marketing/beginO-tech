@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GenZify Marketing — Desktop 3D Hero Scene (Three.js Module)
+   Begino Tech — Desktop 3D Hero Scene (Three.js Module)
    ========================================================================== */
 
 (function () {
