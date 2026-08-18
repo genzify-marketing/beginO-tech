@@ -3,12 +3,11 @@
 Official website and digital portfolio for **Begino Tech**, a modern digital agency offering Web Development, Digital Marketing, Graphic Design, Meta Ads, Google Ads, and SEO.
 
 ## Features
-- **Responsive Design**: Fluid and mobile-optimized layouts with custom animations.
-- **Dark/Light Mode**: Automatic theme detection and persistent toggle (`begino-theme`).
-- **Interactive 3D Elements**: Three.js module for desktop hero section.
-- **Lenis Smooth Scroll & GSAP Animations**: High-performance scrolling and micro-interactions.
-- **SEO & Social Optimization**: Open Graph tags, Twitter cards, and Schema.org JSON-LD structured data.
+- **Responsive Design**: Mobile-first architecture optimized for all screen sizes (320px to 4K).
+- **Interactive UI**: Custom 3D card tilt interactions, smooth scrolling via Lenis, dynamic ambient lighting.
+- **Glassmorphism & Gradients**: Sleek dark & light theme styling with vibrant violet accents.
+- **Lead Capture & WhatsApp Routing**: Direct multi-channel communication pipelines.
 
-## Technologies Used
-- HTML5, CSS3 (Vanilla CSS + Tailwind CDN)
-- JavaScript (ES6+), GSAP & ScrollTrigger, Lenis, Three.js, Lucide Icons
+## Tech Stack
+- HTML5, CSS3 (Modern custom design system), Tailwind CSS (Utility layer)
+- JavaScript (ES6+), GSAP & ScrollTrigger, Lenis, Lucide Icons

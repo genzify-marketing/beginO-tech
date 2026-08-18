@@ -104,22 +104,22 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: auto;
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body {
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  line-height: 1.65;
-  overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
-  cursor: default;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--duration-normal) ease, color var(--duration-normal) ease;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
@@ -580,10 +580,12 @@ a.glass:hover, button.glass:hover {
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(167, 139, 250, 0.15));
+  filter: blur(80px);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(167, 139, 250, 0.12));
   animation: morph 18s ease-in-out infinite;
   will-change: transform;
+  pointer-events: none;
+  z-index: 1;
 }
 
 @keyframes morph {
@@ -591,37 +593,9 @@ a.glass:hover, button.glass:hover {
   50% { border-radius: 65% 35% 40% 60% / 60% 40% 60% 40%; transform: rotate(180deg) scale(1.05); }
 }
 
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.4;
-  animation: float-p linear infinite;
-}
-
-@keyframes float-p {
-  0% { transform: translateY(0) translateX(0); opacity: 0; }
-  10% { opacity: 0.5; }
-  90% { opacity: 0.3; }
-  100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
-}
-
-#hero3d {
-  width: 100%;
-  height: 100%;
-}
-#hero3d canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-}
-@media (max-width: 899px) {
-  #hero3d { display: none; }
-}
-
 /* Hero typography refinements */
 #home h1 {
-  font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  font-size: clamp(1.85rem, 5.2vw, 3.5rem);
   line-height: 1.15;
   letter-spacing: -0.03em;
   font-weight: 800;
@@ -1080,46 +1054,27 @@ footer ul li a:hover::after {
    15. Responsive Design
    -------------------------------------------------------------------------- */
 
-/* Mobile-first adjustments */
-@media (max-width: 480px) {
+/* Mobile-first adjustments (Max 640px) */
+@media (max-width: 640px) {
   .section-pad {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
   }
 
   #home {
-    padding-top: 5.5rem;
-    padding-bottom: 2.5rem;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
     min-height: auto;
   }
 
   #home h1 {
-    font-size: 1.875rem;
-    line-height: 1.15;
+    font-size: clamp(1.75rem, 7vw, 2.35rem);
+    line-height: 1.18;
   }
 
   .btn-grad, a.glass {
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 1.4rem;
     font-size: 0.875rem;
-  }
-
-  /* Stack hero buttons */
-  .hero-reveal .flex-wrap {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .hero-reveal .flex-wrap a {
-    text-align: center;
-    justify-content: center;
-  }
-
-  /* Trust signals smaller */
-  .hero-reveal .grid-cols-3 {
-    gap: 1rem;
-  }
-
-  .hero-reveal .grid-cols-3 .text-3xl {
-    font-size: 1.5rem;
   }
 
   /* Footer grid single column */
@@ -1129,75 +1084,54 @@ footer ul li a:hover::after {
   }
 }
 
-/* Small mobile (320px) */
-@media (max-width: 360px) {
+/* Small mobile screens (320px - 380px) */
+@media (max-width: 380px) {
   html {
-    font-size: 14px;
+    font-size: 14.5px;
   }
 
   #home h1 {
-    font-size: 1.625rem;
+    font-size: 1.65rem;
   }
 
   .max-w-7xl {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+
+  .logo-card {
+    padding: 0.75rem !important;
   }
 }
 
-/* Tablet */
-@media (min-width: 481px) and (max-width: 1023px) {
+/* Tablet portrait & landscape (641px - 1023px) */
+@media (min-width: 641px) and (max-width: 1023px) {
   #home {
     min-height: auto;
     padding-top: 7rem;
-    padding-bottom: 4rem;
+    padding-bottom: 4.5rem;
   }
 
-  /* About section — stack on smaller tablets */
-  #about .grid.lg\\:grid-cols-2 {
-    gap: 2.5rem;
-  }
-}
-
-/* Tablet landscape */
-@media (min-width: 768px) and (max-width: 1023px) {
   #home h1 {
     font-size: 2.75rem;
   }
-
-  /* Why us section — 2 columns on tablet */
-  #whyGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
-/* Desktop refinements */
+/* Desktop refinements (1024px+) */
 @media (min-width: 1024px) {
   #home {
     min-height: 100vh;
   }
 }
 
-/* Large desktop */
+/* Large desktop (1600px+) */
 @media (min-width: 1600px) {
   .max-w-7xl {
     max-width: 80rem;
   }
 
   #home h1 {
-    font-size: 4rem;
-  }
-}
-
-/* Ultra-wide */
-@media (min-width: 2560px) {
-  .max-w-7xl {
-    max-width: 90rem;
-  }
-
-  .section-pad {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    font-size: 3.75rem;
   }
 }
 
@@ -1211,7 +1145,7 @@ footer ul li a:hover::after {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .blob, .particle, .hero-grid {
+  .blob, .hero-grid {
     animation: none !important;
   }
 }

@@ -44,15 +44,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
-  <!-- Three.js Module Map -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
-    }
-  }
-  </script>
+
 
   <!-- Tailwind CDN & Theme Mapping -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -234,82 +226,74 @@
   <main id="main-content">
 
     <!-- ============ HERO SECTION ============ -->
-    <section id="home" class="relative min-h-screen flex items-center overflow-hidden mesh-bg pt-28 pb-16">
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden mesh-bg pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-36 md:pb-20">
 
-      <!-- Dynamic Background Elements -->
+      <!-- Subtle Ambient Gradient Lighting -->
       <div class="hero-grid"></div>
-      <div class="blob w-[320px] h-[320px] -top-20 -left-20"></div>
-      <div class="blob w-[380px] h-[380px] -bottom-20 -right-20" style="animation-delay: -6s;"></div>
+      <div class="blob w-[280px] sm:w-[360px] h-[280px] sm:h-[360px] -top-16 -left-16 opacity-30"></div>
+      <div class="blob w-[300px] sm:w-[420px] h-[300px] sm:h-[420px] -bottom-16 -right-16 opacity-25" style="animation-delay: -6s;"></div>
 
-      <!-- Floating Ambient Particles -->
-      <div class="particle w-1.5 h-1.5 top-1/4 left-1/5" style="animation-duration: 8s;"></div>
-      <div class="particle w-2 h-2 top-3/4 left-1/3" style="animation-duration: 12s; animation-delay: 2s;"></div>
-      <div class="particle w-1 h-1 top-1/2 right-1/4" style="animation-duration: 10s; animation-delay: 4s;"></div>
-
-      <!-- Three.js 3D Hero Canvas Container -->
-      <div id="hero3d" class="absolute inset-0 z-[2] pointer-events-none overflow-hidden"></div>
-
-      <div class="relative z-10 max-w-7xl mx-auto px-5 md:px-10 w-full">
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 w-full">
+        <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
 
           <!-- Hero Left Column: Copy & Actions -->
-          <div class="lg:col-span-7 flex flex-col justify-center">
-            <div class="hero-reveal mb-6">
+          <div class="lg:col-span-7 flex flex-col justify-center text-center lg:text-left items-center lg:items-start">
+            <div class="hero-reveal mb-4 sm:mb-6">
               <span
-                class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+                class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[0.7rem] sm:text-xs font-bold uppercase tracking-wider">
                 <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Ideas • Designs • Solutions
               </span>
             </div>
 
-            <h1 class="hero-reveal font-heading font-extrabold tracking-tight leading-tight">
+            <h1 class="hero-reveal font-heading font-extrabold tracking-tight leading-[1.15] text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] w-full">
               We build digital products that <span class="grad-text">drive growth.</span>
             </h1>
 
-            <p class="hero-reveal mt-6 leading-relaxed text-muted max-w-2xl text-base md:text-lg"
+            <p class="hero-reveal mt-4 sm:mt-6 leading-relaxed text-muted max-w-2xl text-sm sm:text-base md:text-lg"
               style="color: var(--text-muted);">
               From high-converting websites and scalable web applications to ROI-driven digital marketing — BegiNo Tech
               helps ambitious brands stand out, acquire customers, and scale with precision.
             </p>
 
-            <div class="hero-reveal mt-8 flex flex-wrap items-center gap-4">
+            <div class="hero-reveal mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <a href="#contact"
-                class="btn-grad px-8 py-3.5 rounded-full text-sm font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all">
+                class="btn-grad px-7 sm:px-8 py-3.5 rounded-full text-sm font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all text-center justify-center flex items-center gap-2">
                 Start a Project <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
               <a href="#services"
-                class="glass px-8 py-3.5 rounded-full text-sm font-bold hover:border-primary/40 transition-colors"
+                class="glass px-7 sm:px-8 py-3.5 rounded-full text-sm font-bold hover:border-primary/40 transition-colors text-center justify-center flex items-center gap-1.5"
                 style="color: var(--text);">
-                Our Services <i data-lucide="chevron-down" class="w-3.5 h-3.5 inline-block ml-1"></i>
+                Our Services <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
               </a>
             </div>
 
             <!-- Trust Signals -->
-            <div class="hero-reveal mt-12 pt-8 border-t grid grid-cols-3 gap-6 max-w-md">
+            <div class="hero-reveal mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border grid grid-cols-3 gap-3 sm:gap-6 w-full max-w-md">
               <div>
-                <div class="font-heading font-bold text-3xl sm:text-4xl text-primary">6</div>
-                <div class="text-xs text-muted mt-1.5 uppercase tracking-widest font-bold">Core Services</div>
+                <div class="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-primary">6</div>
+                <div class="text-[0.65rem] sm:text-xs text-muted mt-1 uppercase tracking-wider font-bold">Core Services</div>
               </div>
               <div>
-                <div class="font-heading font-bold text-3xl sm:text-4xl text-primary">100%</div>
-                <div class="text-xs text-muted mt-1.5 uppercase tracking-widest font-bold">Custom</div>
+                <div class="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-primary">100%</div>
+                <div class="text-[0.65rem] sm:text-xs text-muted mt-1 uppercase tracking-wider font-bold">Custom</div>
               </div>
               <div>
-                <div class="font-heading font-bold text-3xl sm:text-4xl text-primary">2025</div>
-                <div class="text-xs text-muted mt-1.5 uppercase tracking-widest font-bold">Founded</div>
+                <div class="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-primary">2025</div>
+                <div class="text-[0.65rem] sm:text-xs text-muted mt-1 uppercase tracking-wider font-bold">Founded</div>
               </div>
             </div>
           </div>
 
           <!-- Hero Right Column: 3D Illuminated Logo Showcase -->
-          <div class="lg:col-span-5 hero-reveal flex justify-center items-center">
-            <div class="logo-showcase-wrap relative w-full max-w-md">
+          <div class="lg:col-span-5 hero-reveal flex justify-center items-center w-full mt-4 lg:mt-0">
+            <div class="logo-showcase-wrap relative w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-md mx-auto">
               <div class="logo-orb"></div>
               <div id="heroLogoCard"
-                class="logo-card relative rounded-20 overflow-hidden glass shadow-2xl gradient-border p-4 sm:p-6 w-full">
+                class="logo-card relative rounded-20 overflow-hidden glass shadow-2xl gradient-border p-3 sm:p-5 md:p-6 w-full">
                 <div
-                  class="w-full rounded-20 overflow-hidden relative bg-[#09090b]/90 backdrop-blur-md border border-primary/20 flex flex-col items-center justify-center p-6 sm:p-8 text-center">
+                  class="w-full rounded-20 overflow-hidden relative bg-[#09090b]/90 backdrop-blur-md border border-primary/20 flex flex-col items-center justify-center p-5 sm:p-7 md:p-8 text-center">
                   <img id="heroLogoImg" src="assets/logo-full.png" alt="BegiNo Tech — Ideas • Designs • Solutions"
-                    class="w-full max-w-[320px] h-auto object-contain drop-shadow-[0_0_35px_rgba(168,85,247,0.5)] transition-transform duration-500 hover:scale-105"
+                    class="w-full max-w-[220px] sm:max-w-[280px] md:max-w-[320px] h-auto object-contain drop-shadow-[0_0_35px_rgba(168,85,247,0.5)] transition-transform duration-500 hover:scale-105"
                     loading="eager" />
                 </div>
               </div>
@@ -863,7 +847,5 @@
 
   <!-- Application Scripts -->
   <script src="script.js"></script>
-  <script type="module" src="hero3d.js"></script>
 </body>
-
 </html>
