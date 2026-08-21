@@ -5,33 +5,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* --------------------------------------------------------------------------
-     1. Lenis Smooth Scroll Engine
-     -------------------------------------------------------------------------- */
-  let lenis;
-  if (typeof Lenis !== 'undefined' && !reduceMotion) {
-    lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      syncTouch: false,
-      anchors: false
-    });
-
-    if (window.gsap && window.ScrollTrigger) {
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0, 0);
-    } else {
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-    }
-  }
+  /* Native smooth scrolling keeps anchor navigation reliable without a second scroll controller. */
+  const lenis = null;
 
   /* --------------------------------------------------------------------------
      2. Scroll Progress & Back To Top
@@ -61,24 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateScroll, { passive: true });
   updateScroll();
 
+  function scrollToTarget(target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (event) => {
       const target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
-
-      event.preventDefault();
-      if (lenis) {
-        lenis.scrollTo(target, { offset: -80 });
-      } else {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
     });
   });
 
   if (backToTop) {
     backToTop.addEventListener('click', () => {
-      if (lenis) lenis.scrollTo(0);
-      else window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToTarget(document.body);
     });
   }
 
@@ -107,14 +78,35 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeMenu() {
     if (!mobileMenu || !menuBtn) return;
     mobileMenu.classList.remove('open');
+    document.body.classList.remove('mobile-menu-open');
+    document.body.classList.add('mobile-menu-closed');
+    mobileMenu.style.removeProperty('max-height');
+    mobileMenu.style.removeProperty('opacity');
+    mobileMenu.style.removeProperty('transform');
+    mobileMenu.style.removeProperty('pointer-events');
     menuBtn.setAttribute('aria-expanded', 'false');
     menuBtn.innerHTML = '<i data-lucide="menu" class="w-5 h-5"></i>';
     if (window.lucide) lucide.createIcons();
   }
 
   if (menuBtn && mobileMenu) {
+    document.body.classList.add('mobile-menu-closed');
+
     menuBtn.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.toggle('open');
+      document.body.classList.toggle('mobile-menu-open', isOpen);
+      document.body.classList.toggle('mobile-menu-closed', !isOpen);
+      if (isOpen) {
+        mobileMenu.style.setProperty('max-height', '32rem', 'important');
+        mobileMenu.style.setProperty('opacity', '1', 'important');
+        mobileMenu.style.setProperty('transform', 'translateY(0)', 'important');
+        mobileMenu.style.setProperty('pointer-events', 'auto', 'important');
+      } else {
+        mobileMenu.style.setProperty('max-height', '0px', 'important');
+        mobileMenu.style.setProperty('opacity', '0', 'important');
+        mobileMenu.style.setProperty('transform', 'translateY(-8px)', 'important');
+        mobileMenu.style.setProperty('pointer-events', 'none', 'important');
+      }
       menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       menuBtn.innerHTML = isOpen ? '<i data-lucide="x" class="w-5 h-5"></i>' : '<i data-lucide="menu" class="w-5 h-5"></i>';
       if (window.lucide) lucide.createIcons();
@@ -180,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const services = [
     {
       title: 'Web Development',
-      desc: 'Fast, responsive, high-converting web applications built with modern standards.',
+      desc: 'Fast, responsive websites and web applications that make complex things feel simple.',
       demoType: 'terminal',
       demoContent: {
         lines: [
@@ -195,30 +187,51 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: 'code-2'
     },
     {
-      title: 'Mobile App Development',
-      desc: 'Cross-platform mobile apps that deliver native-quality experiences.',
+      title: 'Digital Marketing',
+      desc: 'Strategy, content, and measurable campaigns that turn attention into steady demand.',
+      demoType: 'dashboard',
+      demoContent: {
+        metrics: [
+          { label: 'Reach', value: '2.4x', up: true },
+          { label: 'Leads', value: '+38%', up: true },
+          { label: 'Content live', value: '24', up: true },
+          { label: 'Audience', value: '12k', up: false }
+        ]
+      },
+      icon: 'megaphone'
+    },
+    {
+      title: 'Mobile Apps',
+      desc: 'Clear, considered mobile experiences that people can use without instructions.',
       demoType: 'app',
       icon: 'smartphone'
     },
     {
       title: 'UI/UX Design',
-      desc: 'Conversion-focused interfaces with modern design systems.',
+      desc: 'Interfaces and design systems that give every important action a clear place.',
       demoType: 'theme',
       icon: 'figma'
     },
     {
-      title: 'Digital Marketing & SEO',
-      desc: 'Data-driven campaigns, SEO, and paid acquisition strategies.',
-      demoType: 'seo',
+      title: 'Graphic Design',
+      desc: 'Distinct visual systems, campaign assets, and brand details people remember.',
+      demoType: 'theme',
+      icon: 'palette'
+    },
+    {
+      title: 'Ads',
+      desc: 'Focused Meta and Google advertising built around testing, learning, and efficient growth.',
+      demoType: 'terminal',
       demoContent: {
-        keywords: [
-          { keyword: 'web dev agency', pos: '#1', cls: 'top' },
-          { keyword: 'saas development', pos: '#3', cls: 'top' },
-          { keyword: 'mobile app builder', pos: '#7', cls: 'mid' },
-          { keyword: 'ai solutions india', pos: '#12', cls: 'low' }
+        lines: [
+          { prompt: '$ ', cmd: 'launch campaign --focused' },
+          { output: '✓ Audience segments ready' },
+          { output: '✓ Creative variants tested' },
+          { success: '✓ ROAS tracking enabled' },
+          { success: '✓ Campaign ready to scale' }
         ]
       },
-      icon: 'bar-chart-2'
+      icon: 'target'
     }
   ];
 
@@ -367,8 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const contactSection = document.getElementById('contact');
         if (contactSection) {
-          if (lenis) lenis.scrollTo(contactSection, { offset: -70 });
-          else contactSection.scrollIntoView({ behavior: 'smooth' });
+          scrollToTarget(contactSection);
         }
       }
     });
@@ -415,14 +427,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const whyTrack = document.getElementById('whyTrack');
   if (whyTrack) {
     const whyItems = [
-      { icon: 'code-2', title: 'Engineering-First', desc: 'Every project is built with clean, scalable code — not templates. We engineer solutions that grow with your business.' },
-      { icon: 'zap', title: 'Performance Obsessed', desc: 'Sub-second load times, optimized builds, and lighthouse scores above 90. Speed is a feature, not an afterthought.' },
-      { icon: 'layers', title: 'Scalable Architecture', desc: 'From day one, we design for scale. Microservices, cloud-native, and modular systems that handle growth.' },
-      { icon: 'palette', title: 'Modern UI/UX', desc: 'Conversion-focused interfaces built on design systems. Every pixel serves a purpose in driving user engagement.' },
-      { icon: 'brain', title: 'AI-Ready Solutions', desc: 'We integrate AI and automation where it creates real value — not as a buzzword, but as a competitive advantage.' },
-      { icon: 'shield-check', title: 'Reliable Support', desc: 'Direct founder communication, clear SLAs, and proactive maintenance. We are an extension of your team.' },
-      { icon: 'bar-chart-2', title: 'Data-Driven Strategy', desc: 'Every decision backed by analytics, audience data, and rigorous testing. No guesswork, only measurable results.' },
-      { icon: 'heart-handshake', title: 'Founder-Led Focus', desc: 'You work directly with the creators and strategists building your product — not junior middlemen.' },
+      { icon: 'code-2', title: 'Close collaboration', desc: 'You work with the people shaping the work, with decisions kept clear and conversations direct.' },
+      { icon: 'scan-search', title: 'Useful by default', desc: 'We start with the real problem, then remove anything that does not help someone use the product.' },
+      { icon: 'layers', title: 'Built to evolve', desc: 'The system is shaped for the next version as well as the first, without adding complexity for its own sake.' },
+      { icon: 'palette', title: 'Design with purpose', desc: 'Visual decisions carry meaning: hierarchy, motion, and detail all help people move forward.' },
+      { icon: 'sparkles', title: 'Thoughtful automation', desc: 'We use AI where it makes work lighter and clearer, with a human decision still in the loop.' },
+      { icon: 'shield-check', title: 'Steady after launch', desc: 'Good work keeps its shape after release through documentation, care, and an honest view of what comes next.' },
     ];
 
     const createWhyCards = () => whyItems.map(w => `
