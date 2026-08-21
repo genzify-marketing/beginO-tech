@@ -1,39 +1,12 @@
 /* ==========================================================================
-   Begino Tech — Core Interactive Logic & Application Engine
+   BegiNo Tech — Premium Interactive Engine
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* --------------------------------------------------------------------------
-     1. Theme Engine (System Preference + Manual Toggle + LocalStorage)
-     -------------------------------------------------------------------------- */
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.getElementById('themeIcon');
-  
-  function getInitialTheme() {
-    const saved = localStorage.getItem('begino-theme');
-    if (saved) return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('begino-theme', theme);
-  }
-
-  const currentTheme = getInitialTheme();
-  applyTheme(currentTheme);
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const active = document.documentElement.getAttribute('data-theme');
-      applyTheme(active === 'dark' ? 'light' : 'dark');
-    });
-  }
-
-  /* --------------------------------------------------------------------------
-     2. Lenis Smooth Scroll Engine
+     1. Lenis Smooth Scroll Engine
      -------------------------------------------------------------------------- */
   let lenis;
   if (typeof Lenis !== 'undefined' && !reduceMotion) {
@@ -42,47 +15,65 @@ document.addEventListener('DOMContentLoaded', () => {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
-      smoothWheel: true
+      smoothWheel: true,
+      syncTouch: false,
+      anchors: false
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    if (window.ScrollTrigger) {
+    if (window.gsap && window.ScrollTrigger) {
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
       gsap.ticker.lagSmoothing(0, 0);
+    } else {
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
     }
   }
 
   /* --------------------------------------------------------------------------
-     3. Scroll Progress & Back To Top
+     2. Scroll Progress & Back To Top
      -------------------------------------------------------------------------- */
   const progressBar = document.getElementById('progress-bar');
   const backToTop = document.getElementById('backToTop');
+  const navbar = document.getElementById('navbar');
+  let scrollUpdatePending = false;
 
   function updateScroll() {
-    const h = document.documentElement;
-    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-    if (progressBar) progressBar.style.width = scrolled + '%';
+    if (scrollUpdatePending) return;
+    scrollUpdatePending = true;
 
-    if (backToTop) {
-      if (window.scrollY > 500) backToTop.classList.add('show');
-      else backToTop.classList.remove('show');
-    }
+    requestAnimationFrame(() => {
+      scrollUpdatePending = false;
+      const h = document.documentElement;
+      const scrollRange = h.scrollHeight - h.clientHeight;
+      const scrolled = scrollRange > 0 ? h.scrollTop / scrollRange : 0;
 
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-      if (window.scrollY > 40) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-    }
+      if (progressBar) progressBar.style.transform = `scaleX(${scrolled})`;
+
+      if (backToTop) backToTop.classList.toggle('show', h.scrollTop > 500);
+      if (navbar) navbar.classList.toggle('scrolled', h.scrollTop > 40);
+    });
   }
 
   window.addEventListener('scroll', updateScroll, { passive: true });
   updateScroll();
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+
+      event.preventDefault();
+      if (lenis) {
+        lenis.scrollTo(target, { offset: -80 });
+      } else {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 
   if (backToTop) {
     backToTop.addEventListener('click', () => {
@@ -91,8 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const heroScreen = document.getElementById('heroScreen');
+  if (heroScreen) {
+    const flipHeroScreen = () => {
+      const isFlipped = heroScreen.classList.toggle('is-flipped');
+      heroScreen.setAttribute('aria-pressed', String(isFlipped));
+    };
+
+    heroScreen.addEventListener('click', flipHeroScreen);
+    heroScreen.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        flipHeroScreen();
+      }
+    });
+  }
+
   /* --------------------------------------------------------------------------
-     4. Accessible Mobile Navigation
+     3. Accessible Mobile Navigation
      -------------------------------------------------------------------------- */
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -125,79 +132,227 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------------------------------
-     5. Custom Cursor & Spring Physics
+     4. Hero Interactive Code Animation
      -------------------------------------------------------------------------- */
-  const glow = document.getElementById('cursor-glow');
-  const dot = document.getElementById('cursor-dot');
-  const cursorLabel = document.getElementById('cursorLabel');
-  const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+  const heroCode = document.getElementById('heroCode');
+  if (heroCode && !reduceMotion) {
+    const codeLines = [
+      '<span class="comment">// BegiNo Tech — Build. Ship. Scale.</span>',
+      '',
+      '<span class="keyword">const</span> <span class="fn">project</span> = {',
+      '  <span class="string">name</span>: <span class="string">"Your Next Product"</span>,',
+      '  <span class="string">stack</span>: [<span class="string">"React"</span>, <span class="string">"Node"</span>, <span class="string">"AI"</span>],',
+      '  <span class="string">performance</span>: <span class="number">98</span>,',
+      '  <span class="string">scalable</span>: <span class="keyword">true</span>,',
+      '};',
+      '',
+      '<span class="keyword">await</span> <span class="fn">beginotech</span>.<span class="fn">deploy</span>(project);',
+      '<span class="comment">// ✓ Build deployed successfully</span>',
+    ];
 
-  if (!reduceMotion && !isCoarse && dot && glow && window.gsap) {
-    const dotX = gsap.quickTo(dot, 'x', { duration: 0.4, ease: 'power3.out' });
-    const dotY = gsap.quickTo(dot, 'y', { duration: 0.4, ease: 'power3.out' });
-    const glowX = gsap.quickTo(glow, 'x', { duration: 0.8, ease: 'power3.out' });
-    const glowY = gsap.quickTo(glow, 'y', { duration: 0.8, ease: 'power3.out' });
-
-    gsap.set(dot, { xPercent: -50, yPercent: -50 });
-    gsap.set(glow, { xPercent: -50, yPercent: -50 });
-
-    window.addEventListener('mousemove', (e) => {
-      dotX(e.clientX); dotY(e.clientY);
-      glowX(e.clientX); glowY(e.clientY);
+    codeLines.forEach((line, i) => {
+      const div = document.createElement('div');
+      div.className = 'line';
+      div.innerHTML = line || '&nbsp;';
+      div.style.animationDelay = `${0.8 + i * 0.15}s`;
+      heroCode.appendChild(div);
     });
-
-    document.querySelectorAll('[data-cursor-text]').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        dot.classList.add('expand');
-        if (cursorLabel) cursorLabel.textContent = el.dataset.cursorText || '';
-      });
-      el.addEventListener('mouseleave', () => {
-        dot.classList.remove('expand');
-        if (cursorLabel) cursorLabel.textContent = '';
-      });
-    });
-
-    document.querySelectorAll('a, button, .tilt-card').forEach(el => {
-      if (el.hasAttribute('data-cursor-text')) return;
-      el.addEventListener('mouseenter', () => gsap.to(dot, { scale: 1.5, duration: 0.3 }));
-      el.addEventListener('mouseleave', () => gsap.to(dot, { scale: 1, duration: 0.3 }));
-    });
+  } else if (heroCode) {
+    // Static fallback for reduced motion
+    heroCode.innerHTML = `
+      <div class="line" style="opacity:1"><span class="comment">// BegiNo Tech — Build. Ship. Scale.</span></div>
+      <div class="line" style="opacity:1">&nbsp;</div>
+      <div class="line" style="opacity:1"><span class="keyword">const</span> <span class="fn">project</span> = {</div>
+      <div class="line" style="opacity:1">  <span class="string">name</span>: <span class="string">"Your Next Product"</span>,</div>
+      <div class="line" style="opacity:1">  <span class="string">stack</span>: [<span class="string">"React"</span>, <span class="string">"Node"</span>, <span class="string">"AI"</span>],</div>
+      <div class="line" style="opacity:1">  <span class="string">performance</span>: <span class="number">98</span>,</div>
+      <div class="line" style="opacity:1">  <span class="string">scalable</span>: <span class="keyword">true</span>,</div>
+      <div class="line" style="opacity:1">};</div>
+      <div class="line" style="opacity:1">&nbsp;</div>
+      <div class="line" style="opacity:1"><span class="keyword">await</span> <span class="fn">beginotech</span>.<span class="fn">deploy</span>(project);</div>
+      <div class="line" style="opacity:1"><span class="comment">// ✓ Build deployed successfully</span></div>
+    `;
   }
 
   /* --------------------------------------------------------------------------
-     6. Services Data & Rendering
+     5. Services Data & Rendering (with Interactive Demos)
      -------------------------------------------------------------------------- */
   const services = [
-    { svg: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>', title: 'Web Development', desc: 'Fast, responsive, high-converting web applications engineered with modern frontend standards and clean UI/UX.' },
-    { svg: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>', title: 'Digital Marketing', desc: 'Full-funnel growth strategy built on sharp audience targeting and data-driven creative execution.' },
-    { svg: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>', title: 'Graphic Design', desc: 'Distinct brand visual systems, pitch decks, and digital assets crafted to elevate brand perception.' },
-    { svg: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.33-6 4Z"/></svg>', title: 'Meta Ads', desc: 'High-ROAS Facebook & Instagram campaigns with scroll-stopping ad creatives and audience testing.' },
-    { svg: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>', title: 'Google Ads', desc: 'Intent-driven Search, Display, and Performance Max campaigns targeting customers when they buy.' },
-    { svg: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><path d="m8 11 2 2 4-4"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>', title: 'SEO', desc: 'Technical SEO, keyword architecture, and content strategy for lasting organic market authority.' }
+    {
+      title: 'Web Development',
+      desc: 'Fast, responsive, high-converting web applications built with modern standards.',
+      demoType: 'terminal',
+      demoContent: {
+        lines: [
+          { prompt: '$ ', cmd: 'npx create-next-app beginotech-client' },
+          { output: '✓ Installing dependencies...' },
+          { output: '✓ Initializing project structure...' },
+          { success: '✓ Ready — running on localhost:3000' },
+          { prompt: '$ ', cmd: 'npm run build' },
+          { success: '✓ Build optimized — 98/100 Performance' }
+        ]
+      },
+      icon: 'code-2'
+    },
+    {
+      title: 'Mobile App Development',
+      desc: 'Cross-platform mobile apps that deliver native-quality experiences.',
+      demoType: 'app',
+      icon: 'smartphone'
+    },
+    {
+      title: 'UI/UX Design',
+      desc: 'Conversion-focused interfaces with modern design systems.',
+      demoType: 'theme',
+      icon: 'figma'
+    },
+    {
+      title: 'Digital Marketing & SEO',
+      desc: 'Data-driven campaigns, SEO, and paid acquisition strategies.',
+      demoType: 'seo',
+      demoContent: {
+        keywords: [
+          { keyword: 'web dev agency', pos: '#1', cls: 'top' },
+          { keyword: 'saas development', pos: '#3', cls: 'top' },
+          { keyword: 'mobile app builder', pos: '#7', cls: 'mid' },
+          { keyword: 'ai solutions india', pos: '#12', cls: 'low' }
+        ]
+      },
+      icon: 'bar-chart-2'
+    }
   ];
 
   const servicesGrid = document.getElementById('servicesGrid');
   if (servicesGrid) {
     services.forEach((s, i) => {
       const card = document.createElement('div');
-      card.className = 'service-card lift-card gradient-border glass rounded-20 p-6 flex flex-col h-full cursor-pointer';
+      card.className = 'service-interactive-card';
       card.setAttribute('data-aos', 'fade-up');
-      card.setAttribute('data-aos-delay', (i % 3) * 80);
+      card.setAttribute('data-aos-delay', (i % 2) * 100);
+
+      let demoHTML = '';
+
+      if (s.demoType === 'terminal' && s.demoContent) {
+        let linesHTML = s.demoContent.lines.map(l => {
+          if (l.prompt) return `<div><span class="prompt">${l.prompt}</span><span class="cmd">${l.cmd}</span></div>`;
+          if (l.output) return `<div class="output">${l.output}</div>`;
+          if (l.success) return `<div class="success">${l.success}</div>`;
+          return '';
+        }).join('');
+        demoHTML = `
+          <div class="service-demo-terminal">
+            <div class="service-demo-terminal-bar">
+              <span style="background: #F38BA8;"></span>
+              <span style="background: #FAB387;"></span>
+              <span style="background: #A6E3A1;"></span>
+            </div>
+            <div class="service-demo-terminal-body">${linesHTML}</div>
+          </div>`;
+      } else if (s.demoType === 'app') {
+        demoHTML = `
+          <div class="service-demo-app">
+            <div class="service-demo-app-bar">
+              <span>●●● BegiNo App</span>
+              <span style="font-size: 0.55rem; opacity: 0.7;">9:41 AM</span>
+            </div>
+            <div class="service-demo-app-body">
+              <div class="app-item"><div class="app-icon"><i data-lucide="home" class="w-3 h-3" style="color: var(--primary);"></i></div><span>Dashboard</span></div>
+              <div class="app-item"><div class="app-icon"><i data-lucide="bell" class="w-3 h-3" style="color: var(--primary);"></i></div><span>Notifications (3)</span></div>
+              <div class="app-item"><div class="app-icon"><i data-lucide="settings" class="w-3 h-3" style="color: var(--primary);"></i></div><span>Settings</span></div>
+              <div class="app-item"><div class="app-icon"><i data-lucide="user" class="w-3 h-3" style="color: var(--primary);"></i></div><span>Profile</span></div>
+            </div>
+          </div>`;
+      } else if (s.demoType === 'dashboard' && s.demoContent) {
+        let metricsHTML = s.demoContent.metrics.map(m =>
+          `<div class="metric">
+            <div class="metric-label">${m.label}</div>
+            <div class="metric-value${m.up ? ' up' : ''}">${m.value}</div>
+          </div>`
+        ).join('');
+        demoHTML = `<div class="service-demo-dash">${metricsHTML}</div>`;
+      } else if (s.demoType === 'workflow' && s.demoContent) {
+        let nodesHTML = s.demoContent.nodes.map((n, ni) => {
+          const cls = ni < 2 ? ' done' : (ni === 2 ? ' active' : '');
+          return `<div class="workflow-node${cls}">${n}</div>` +
+            (ni < s.demoContent.nodes.length - 1 ? '<span class="workflow-arrow">→</span>' : '');
+        }).join('');
+        demoHTML = `<div class="service-demo-workflow">${nodesHTML}</div>`;
+      } else if (s.demoType === 'theme') {
+        demoHTML = `
+          <div class="service-demo-theme">
+            <div class="theme-switcher" id="themeSwitcher">
+              <button class="theme-btn active" data-color="#7C3AED" data-bg="#FAFBFD">Violet</button>
+              <button class="theme-btn" data-color="#059669" data-bg="#F0FDF4">Emerald</button>
+              <button class="theme-btn" data-color="#2563EB" data-bg="#EFF6FF">Blue</button>
+              <button class="theme-btn" data-color="#DC2626" data-bg="#FEF2F2">Red</button>
+            </div>
+            <div class="theme-preview-box" id="themePreview" style="background: #FAFBFD; border-color: rgba(124,58,237,0.15);">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                <div style="width:28px;height:28px;border-radius:8px;background:#7C3AED;"></div>
+                <div>
+                  <div style="font-size:0.7rem;font-weight:700;color:#0A0A14;">BegiNo Tech</div>
+                  <div style="font-size:0.55rem;color:#5C5C72;">Component Preview</div>
+                </div>
+              </div>
+              <div style="height:6px;border-radius:3px;background:#7C3AED;width:65%;margin-bottom:6px;transition:all 0.3s;"></div>
+              <div style="height:6px;border-radius:3px;background:rgba(124,58,237,0.15);width:90%;transition:all 0.3s;"></div>
+            </div>
+          </div>`;
+      } else if (s.demoType === 'seo' && s.demoContent) {
+        let rowsHTML = s.demoContent.keywords.map(k =>
+          `<div class="seo-rank-row">
+            <span class="seo-rank-keyword">${k.keyword}</span>
+            <span class="seo-rank-pos ${k.cls}">${k.pos}</span>
+          </div>`
+        ).join('');
+        demoHTML = `
+          <div class="service-demo-seo">
+            <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-subtle);margin-bottom:0.5rem;">Search Rankings</div>
+            ${rowsHTML}
+            <button class="seo-optimize-btn" onclick="this.textContent='✓ Optimized!';this.style.background='#059669';setTimeout(()=>{this.textContent='Run SEO Audit';this.style.background='var(--primary)';},2000);">Run SEO Audit</button>
+          </div>`;
+      }
 
       card.innerHTML = `
-        <div class="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-          ${s.svg}
+        <div class="service-demo">${demoHTML}</div>
+        <div class="service-info">
+          <h3 class="font-heading">${s.title}</h3>
+          <p>${s.desc}</p>
+          <a href="#contact" data-service="${s.title}" class="service-link">
+            Get Started <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
-        <h3 class="font-heading font-bold text-lg mb-2">${s.title}</h3>
-        <p class="text-sm leading-relaxed mb-5 text-muted">${s.desc}</p>
-        <a href="#contact" data-service="${s.title}" class="service-link mt-auto inline-flex items-center gap-2 text-primary font-semibold text-xs">
-          Learn more <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform"></i>
-        </a>
       `;
       servicesGrid.appendChild(card);
     });
 
-    // Delegate click for service link to auto-fill form field
+    // Theme switcher interactivity
+    const themeSwitcher = document.getElementById('themeSwitcher');
+    const themePreview = document.getElementById('themePreview');
+    if (themeSwitcher && themePreview) {
+      themeSwitcher.addEventListener('click', (e) => {
+        const btn = e.target.closest('.theme-btn');
+        if (!btn) return;
+
+        themeSwitcher.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const color = btn.dataset.color;
+        const bg = btn.dataset.bg;
+        themePreview.style.background = bg;
+        themePreview.style.borderColor = color + '25';
+
+        const swatch = themePreview.querySelector('div > div > div:first-child');
+        if (swatch) swatch.style.background = color;
+
+        const bar1 = themePreview.querySelectorAll('div[style*="height:6px"]')[0];
+        const bar2 = themePreview.querySelectorAll('div[style*="height:6px"]')[1];
+        if (bar1) bar1.style.background = color;
+        if (bar2) bar2.style.background = color + '25';
+      });
+    }
+
+    // Service link → form auto-fill (preserved functionality)
     servicesGrid.addEventListener('click', (e) => {
       const link = e.target.closest('.service-link');
       if (link) {
@@ -205,7 +360,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const serviceName = link.dataset.service;
         const select = document.getElementById('service');
         if (select && serviceName) {
-          select.value = serviceName;
+          // Find closest matching option
+          const options = Array.from(select.options);
+          const match = options.find(o => o.value === serviceName || o.text.includes(serviceName.split(' ')[0]));
+          if (match) select.value = match.value;
         }
         const contactSection = document.getElementById('contact');
         if (contactSection) {
@@ -217,67 +375,108 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------------------------------
-     7. Process Section Steps Rendering
+     6. Tech Stack Strip
      -------------------------------------------------------------------------- */
-  const processSteps = [
-    { num: '01', title: 'Discover & Align', desc: 'We deep dive into your business goals, target demographic, brand values, and competitive landscape.' },
-    { num: '02', title: 'Strategic Roadmap', desc: 'Crafting a focused action plan with milestone deliverables, timelines, and quantitative KPIs.' },
-    { num: '03', title: 'Creative & Architecture', desc: 'Designing conversion-focused user interfaces, visual assets, and high-impact ad concepts.' },
-    { num: '04', title: 'Agile Execution', desc: 'Building clean code or launching campaigns with continuous testing and quality assurance.' },
-    { num: '05', title: 'Launch & Measure', desc: 'Deploying to live environment and monitoring analytics, user heatmaps, and performance metrics.' },
-    { num: '06', title: 'Iterate & Scale', desc: 'Optimizing based on real data to maximize conversions, ROI, and sustainable brand authority.' }
-  ];
+  const techStrip = document.getElementById('techStrip');
+  if (techStrip) {
+    const techs = [
+      { name: 'React', icon: '⚛️' },
+      { name: 'Next.js', icon: '▲' },
+      { name: 'Node.js', icon: '🟢' },
+      { name: 'Python', icon: '🐍' },
+      { name: 'Flutter', icon: '💙' },
+      { name: 'TypeScript', icon: '🔷' },
+      { name: 'Figma', icon: '🎨' },
+      { name: 'AWS', icon: '☁️' },
+      { name: 'Firebase', icon: '🔥' },
+      { name: 'MongoDB', icon: '🍃' },
+      { name: 'PostgreSQL', icon: '🐘' },
+      { name: 'TailwindCSS', icon: '🎐' },
+      { name: 'Docker', icon: '🐳' },
+      { name: 'Git', icon: '🔀' },
+      { name: 'Vercel', icon: '▲' },
+      { name: 'OpenAI', icon: '🤖' },
+    ];
 
-  const processGrid = document.getElementById('processGrid');
-  if (processGrid) {
-    processSteps.forEach((p, i) => {
-      const card = document.createElement('div');
-      card.className = 'lift-card gradient-border glass rounded-20 p-6 flex flex-col h-full relative';
-      card.setAttribute('data-aos', 'fade-up');
-      card.setAttribute('data-aos-delay', (i % 3) * 80);
+    // Create items twice for seamless loop
+    const createItems = () => techs.map(t => `
+      <div class="tech-item">
+        <div class="tech-icon">${t.icon}</div>
+        <span class="tech-label">${t.name}</span>
+      </div>
+    `).join('');
 
-      card.innerHTML = `
-        <span class="text-2xl font-heading font-extrabold text-primary/20 mb-3 block">${p.num}</span>
-        <h3 class="font-heading font-semibold text-base mb-1.5">${p.title}</h3>
-        <p class="text-sm text-muted leading-relaxed">${p.desc}</p>
-      `;
-      processGrid.appendChild(card);
-    });
+    techStrip.innerHTML = createItems() + createItems();
   }
 
   /* --------------------------------------------------------------------------
-     8. 3D Tilt Card Interaction
+     7. Why Us — Horizontal Scroll Cards
      -------------------------------------------------------------------------- */
-  function attachTilt(selector) {
-    document.querySelectorAll(selector).forEach(card => {
-      card.classList.add('tilt-card');
-      if (reduceMotion) return;
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const px = e.clientX - r.left, py = e.clientY - r.top;
-        const rx = (py / r.height - 0.5) * -10;
-        const ry = (px / r.width - 0.5) * 10;
-        if (window.gsap) {
-          gsap.to(card, { rotateX: rx, rotateY: ry, duration: 0.4, ease: 'power2.out', transformPerspective: 800 });
-        }
-      });
-      card.addEventListener('mouseleave', () => {
-        if (window.gsap) {
-          gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power2.out' });
-        }
-      });
-    });
+  const whyTrack = document.getElementById('whyTrack');
+  if (whyTrack) {
+    const whyItems = [
+      { icon: 'code-2', title: 'Engineering-First', desc: 'Every project is built with clean, scalable code — not templates. We engineer solutions that grow with your business.' },
+      { icon: 'zap', title: 'Performance Obsessed', desc: 'Sub-second load times, optimized builds, and lighthouse scores above 90. Speed is a feature, not an afterthought.' },
+      { icon: 'layers', title: 'Scalable Architecture', desc: 'From day one, we design for scale. Microservices, cloud-native, and modular systems that handle growth.' },
+      { icon: 'palette', title: 'Modern UI/UX', desc: 'Conversion-focused interfaces built on design systems. Every pixel serves a purpose in driving user engagement.' },
+      { icon: 'brain', title: 'AI-Ready Solutions', desc: 'We integrate AI and automation where it creates real value — not as a buzzword, but as a competitive advantage.' },
+      { icon: 'shield-check', title: 'Reliable Support', desc: 'Direct founder communication, clear SLAs, and proactive maintenance. We are an extension of your team.' },
+      { icon: 'bar-chart-2', title: 'Data-Driven Strategy', desc: 'Every decision backed by analytics, audience data, and rigorous testing. No guesswork, only measurable results.' },
+      { icon: 'heart-handshake', title: 'Founder-Led Focus', desc: 'You work directly with the creators and strategists building your product — not junior middlemen.' },
+    ];
+
+    const createWhyCards = () => whyItems.map(w => `
+      <div class="why-card">
+        <div class="why-card-icon">
+          <i data-lucide="${w.icon}" class="w-5 h-5"></i>
+        </div>
+        <h3 class="font-heading">${w.title}</h3>
+        <p>${w.desc}</p>
+      </div>
+    `).join('');
+
+    whyTrack.innerHTML = createWhyCards() + createWhyCards();
   }
 
-  setTimeout(() => {
-    attachTilt('.service-card');
-    attachTilt('#processGrid > div');
-    attachTilt('#whyGrid > div');
-    attachTilt('#heroLogoCard');
-  }, 100);
+  /* --------------------------------------------------------------------------
+     8. Process Timeline Scroll Animation
+     -------------------------------------------------------------------------- */
+  if (window.gsap && window.ScrollTrigger && !reduceMotion) {
+    const processTimeline = document.getElementById('processTimeline');
+    const processProgress = document.getElementById('processProgress');
+
+    if (processTimeline && processProgress) {
+      const isMobile = window.innerWidth < 641;
+      const steps = processTimeline.querySelectorAll('.process-step');
+
+      ScrollTrigger.create({
+        trigger: processTimeline,
+        start: 'top 80%',
+        end: 'bottom 50%',
+        onUpdate: (self) => {
+          const progress = self.progress;
+          if (isMobile) {
+            processProgress.style.height = (progress * 90) + '%';
+          } else {
+            processProgress.style.width = (progress * 90) + '%';
+          }
+
+          steps.forEach((step, i) => {
+            const threshold = i / (steps.length - 1);
+            if (progress >= threshold) {
+              step.classList.add('done');
+              step.querySelector('.process-step-num').style.background = 'var(--primary)';
+              step.querySelector('.process-step-num').style.borderColor = 'var(--primary)';
+              step.querySelector('.process-step-num').style.color = '#fff';
+            }
+          });
+        }
+      });
+    }
+  }
 
   /* --------------------------------------------------------------------------
-     9. Contact Form Handling (WhatsApp Fallback Integration)
+     9. Contact Form Handling (WhatsApp Integration — PRESERVED)
      -------------------------------------------------------------------------- */
   const contactForm = document.getElementById('contactForm');
   const formNote = document.getElementById('formNote');
@@ -319,10 +518,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------------------------------
-     10. GSAP Animations & Intersection Observers
+     10. GSAP Scroll Animations
      -------------------------------------------------------------------------- */
   if (window.gsap && window.ScrollTrigger && !reduceMotion) {
-    // Hero elements reveal
+    // Hero reveal
     gsap.from('.hero-reveal', {
       opacity: 0,
       y: 30,
@@ -332,10 +531,10 @@ document.addEventListener('DOMContentLoaded', () => {
       delay: 0.2
     });
 
-    // AOS style triggers
+    // AOS style triggers for [data-aos] elements
     document.querySelectorAll('[data-aos]').forEach(el => {
       const delay = (+el.dataset.aosDelay || 0) / 1000;
-      gsap.fromTo(el, 
+      gsap.fromTo(el,
         { opacity: 0, y: 40 },
         {
           opacity: 1,
@@ -351,9 +550,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       );
     });
+
+    // Hero floating notification animation
+    const heroNotif = document.getElementById('heroNotif');
+    if (heroNotif) {
+      gsap.from(heroNotif, {
+        opacity: 0,
+        x: 30,
+        duration: 0.8,
+        delay: 2,
+        ease: 'power3.out'
+      });
+    }
+
+    // Hero dashboard animation
+    const heroDash = document.getElementById('heroDash');
+    if (heroDash) {
+      gsap.from(heroDash, {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        delay: 2.5,
+        ease: 'power3.out'
+      });
+    }
   }
 
-  // Initialize Lucide icons
+  /* --------------------------------------------------------------------------
+     11. Initialize Lucide Icons
+     -------------------------------------------------------------------------- */
   if (window.lucide) {
     lucide.createIcons();
   }

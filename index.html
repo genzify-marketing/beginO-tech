@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BegiNo Tech — Digital Agency | Ideas • Designs • Solutions</title>
+  <title>BegiNo Tech — We Engineer Digital Products That Scale</title>
   <meta name="description"
-    content="BegiNo Tech is a next-generation digital agency offering Web Development, Digital Marketing, Graphic Design, Meta Ads, Google Ads, and SEO. Ideas • Designs • Solutions." />
+    content="BegiNo Tech is a technology company specializing in Web Development, Mobile Apps, SaaS, AI Solutions, Automation, UI/UX Design and Digital Marketing. Engineering-first. Built to scale." />
   <meta name="author" content="BegiNo Tech" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://beginotech.com/" />
-  <meta property="og:title" content="BegiNo Tech — Digital Agency | Ideas • Designs • Solutions" />
+  <meta property="og:title" content="BegiNo Tech — We Engineer Digital Products That Scale" />
   <meta property="og:description"
-    content="Transforming bold ideas into high-converting websites, visual brand identities, and ROI-driven marketing campaigns." />
+    content="Engineering-first technology company building web applications, mobile apps, SaaS platforms, and AI-powered solutions." />
   <meta property="og:image" content="assets/logo-full.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="BegiNo Tech — Digital Agency | Ideas • Designs • Solutions" />
+  <meta name="twitter:title" content="BegiNo Tech — We Engineer Digital Products That Scale" />
   <meta name="twitter:description"
-    content="High-converting Web Development, Meta Ads, Google Ads, SEO, and Graphic Design." />
+    content="Engineering-first technology company building web applications, mobile apps, SaaS platforms, and AI-powered solutions." />
   <meta name="twitter:image" content="assets/logo-full.png" />
 
   <link rel="canonical" href="https://beginotech.com/" />
@@ -44,9 +44,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
-
-
-  <!-- Tailwind CDN & Theme Mapping -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -73,16 +71,6 @@
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Inline Theme Flash Prevention -->
-  <script>
-      (function () {
-        const savedTheme = localStorage.getItem('begino-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', initialTheme);
-      })();
-  </script>
-
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
   {
@@ -93,7 +81,7 @@
     "slogan": "Ideas • Designs • Solutions",
     "image": "assets/logo-full.png",
     "logo": "assets/logo-mark.png",
-    "description": "BegiNo Tech is a digital agency offering Web Development, Digital Marketing, Graphic Design, Meta Ads, Google Ads, and SEO.",
+    "description": "BegiNo Tech is a technology company specializing in Web Development, Mobile Apps, SaaS, AI Solutions, Automation, UI/UX Design and Digital Marketing.",
     "telephone": ["+916381167474", "+919080203398"],
     "email": "info.beginotech@gmail.com",
     "url": "https://beginotech.com/",
@@ -104,45 +92,39 @@
       "addressCountry": "IN"
     },
     "sameAs": [
-      "https://instagram.com/beginotech",
-      "https://facebook.com/beginotech",
+      "https://www.instagram.com/beginotech_marketing?igsh=MWx4NWRtcXNraG12bw==",
+      "https://www.facebook.com/share/1cse7wS629/",
       "https://linkedin.com/company/beginotech",
-      "https://pinterest.com/beginotech"
+      "https://whatsapp.com/channel/0029VbD3L5zLY6dE0kar6X3B"
     ]
   }
   </script>
 </head>
 
 <body>
-  <!-- Skip Link for Keyboard Accessibility -->
+  <!-- Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Noise Overlay & Progress Bar -->
-  <div class="noise"></div>
+  <!-- Progress Bar -->
   <div id="progress-bar"></div>
-
-  <!-- Custom Cursor -->
-  <div id="cursor-glow"></div>
-  <div id="cursor-dot"><span id="cursorLabel"></span></div>
 
   <!-- ============ NAVBAR ============ -->
   <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
-    <nav class="max-w-7xl mx-auto flex items-center justify-between px-5 md:px-10 py-3.5" aria-label="Main Navigation">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-5 md:px-10 py-4" aria-label="Main Navigation">
       <a href="#home" class="flex items-center gap-3 group" aria-label="BegiNo Tech Home">
         <img src="assets/logo-mark.png" alt="BegiNo Tech Logo"
-          class="w-10 h-10 object-contain rounded-xl transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_10px_rgba(168,85,247,0.4)]"
+          class="w-9 h-9 object-contain rounded-xl transition-transform duration-300 group-hover:scale-110"
           loading="eager" />
         <div class="flex flex-col">
-          <span class="font-heading font-bold text-lg sm:text-xl tracking-tight leading-none"
+          <span class="font-heading font-bold text-lg tracking-tight leading-none"
             style="color: var(--text);">Begi<span class="grad-text font-extrabold">No</span> Tech</span>
-          <span class="text-[0.58rem] tracking-wider text-muted uppercase font-semibold mt-0.5">Ideas • Designs •
-            Solutions</span>
+          <span class="text-[0.55rem] tracking-wider uppercase font-semibold mt-0.5"
+            style="color: var(--text-subtle);">Ideas • Designs • Solutions</span>
         </div>
       </a>
 
       <!-- Desktop Links -->
       <div class="hidden md:flex items-center gap-7">
-        <a href="#about" class="nav-link">About</a>
         <a href="#services" class="nav-link">Services</a>
         <a href="#process" class="nav-link">Process</a>
         <a href="#work" class="nav-link">Work</a>
@@ -150,54 +132,14 @@
         <a href="#contact" class="nav-link">Contact</a>
       </div>
 
-      <div class="hidden md:flex items-center gap-3">
-        <!-- Theme Toggle Button -->
-        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle color theme"
-          title="Toggle Light/Dark Theme">
-          <svg class="w-5 h-5 theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-          <svg class="w-5 h-5 theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-        </button>
-
-        <a href="#contact" class="btn-grad px-6 py-2.5 rounded-full text-sm font-bold">
-          Get Started <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+      <div class="hidden md:flex items-center">
+        <a href="#contact" class="btn-primary px-6 py-2.5 text-sm">
+          Start a Project <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
         </a>
       </div>
 
       <!-- Mobile Controls -->
       <div class="flex items-center gap-2.5 md:hidden">
-        <button id="themeToggleMobile" onclick="document.getElementById('themeToggle').click()" class="theme-toggle-btn"
-          aria-label="Toggle theme" title="Toggle Light/Dark Theme">
-          <svg class="w-5 h-5 theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-          <svg class="w-5 h-5 theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-        </button>
         <button id="menuBtn" class="p-2 focus:outline-none" style="color: var(--text);" aria-expanded="false"
           aria-label="Toggle navigation menu">
           <i data-lucide="menu" class="w-5 h-5"></i>
@@ -208,15 +150,14 @@
     <!-- Mobile Drawer Menu -->
     <div id="mobileMenu" class="md:hidden">
       <div class="px-5 py-5 space-y-3">
-        <a href="#about" class="mobile-link block text-base font-medium py-1">About</a>
         <a href="#services" class="mobile-link block text-base font-medium py-1">Services</a>
         <a href="#process" class="mobile-link block text-base font-medium py-1">Process</a>
         <a href="#work" class="mobile-link block text-base font-medium py-1">Work</a>
         <a href="#why" class="mobile-link block text-base font-medium py-1">Why Us</a>
         <a href="#contact" class="mobile-link block text-base font-medium py-1">Contact</a>
         <a href="#contact"
-          class="mobile-link btn-grad w-full py-3 rounded-full text-center font-bold mt-3 block text-sm">
-          Get Started
+          class="mobile-link btn-primary w-full py-3 rounded-full text-center font-bold mt-3 block text-sm">
+          Start a Project
         </a>
       </div>
     </div>
@@ -226,75 +167,119 @@
   <main id="main-content">
 
     <!-- ============ HERO SECTION ============ -->
-    <section id="home" class="relative min-h-screen flex items-center overflow-hidden mesh-bg pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-36 md:pb-20">
+    <section id="home"
+      class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20">
 
-      <!-- Subtle Ambient Gradient Lighting -->
+      <!-- Background Effects -->
+      <div class="hero-mesh"></div>
       <div class="hero-grid"></div>
-      <div class="blob w-[280px] sm:w-[360px] h-[280px] sm:h-[360px] -top-16 -left-16 opacity-30"></div>
-      <div class="blob w-[300px] sm:w-[420px] h-[300px] sm:h-[420px] -bottom-16 -right-16 opacity-25" style="animation-delay: -6s;"></div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 w-full">
-        <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
-          <!-- Hero Left Column: Copy & Actions -->
+          <!-- Hero Left: Copy & Actions -->
           <div class="lg:col-span-7 flex flex-col justify-center text-center lg:text-left items-center lg:items-start">
-            <div class="hero-reveal mb-4 sm:mb-6">
-              <span
-                class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[0.7rem] sm:text-xs font-bold uppercase tracking-wider">
-                <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Ideas • Designs • Solutions
+            <div class="hero-reveal">
+              <span class="hero-badge">
+                <span class="pulse"></span> Engineering-First Technology
               </span>
             </div>
 
-            <h1 class="hero-reveal font-heading font-extrabold tracking-tight leading-[1.15] text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] w-full">
-              We build digital products that <span class="grad-text">drive growth.</span>
+            <h1 class="hero-reveal mt-6">
+              We engineer digital<br />products that <span class="grad-text">scale.</span>
             </h1>
 
-            <p class="hero-reveal mt-4 sm:mt-6 leading-relaxed text-muted max-w-2xl text-sm sm:text-base md:text-lg"
+            <p class="hero-reveal mt-5 leading-relaxed max-w-xl text-base md:text-lg"
               style="color: var(--text-muted);">
-              From high-converting websites and scalable web applications to ROI-driven digital marketing — BegiNo Tech
-              helps ambitious brands stand out, acquire customers, and scale with precision.
+              From high-performance web applications and mobile apps to AI-powered automation
+              — BegiNo Tech builds technology that drives measurable growth.
             </p>
 
-            <div class="hero-reveal mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-              <a href="#contact"
-                class="btn-grad px-7 sm:px-8 py-3.5 rounded-full text-sm font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all text-center justify-center flex items-center gap-2">
+            <div
+              class="hero-reveal mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+              <a href="#contact" class="btn-primary text-center">
                 Start a Project <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
-              <a href="#services"
-                class="glass px-7 sm:px-8 py-3.5 rounded-full text-sm font-bold hover:border-primary/40 transition-colors text-center justify-center flex items-center gap-1.5"
-                style="color: var(--text);">
-                Our Services <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              <a href="#work" class="btn-secondary text-center">
+                See Our Work <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
               </a>
             </div>
 
             <!-- Trust Signals -->
-            <div class="hero-reveal mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border grid grid-cols-3 gap-3 sm:gap-6 w-full max-w-md">
+            <div
+              class="hero-reveal mt-10 pt-8 border-t grid grid-cols-3 gap-4 sm:gap-8 w-full max-w-md"
+              style="border-color: var(--border);">
               <div>
-                <div class="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-primary">6</div>
-                <div class="text-[0.65rem] sm:text-xs text-muted mt-1 uppercase tracking-wider font-bold">Core Services</div>
+                <div class="font-heading font-extrabold text-2xl sm:text-3xl" style="color: var(--primary);">2025</div>
+                <div class="text-[0.65rem] sm:text-xs mt-1 uppercase tracking-wider font-bold"
+                  style="color: var(--text-subtle);">Founded</div>
               </div>
               <div>
-                <div class="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-primary">100%</div>
-                <div class="text-[0.65rem] sm:text-xs text-muted mt-1 uppercase tracking-wider font-bold">Custom</div>
+                <div class="font-heading font-extrabold text-2xl sm:text-3xl" style="color: var(--primary);">100%</div>
+                <div class="text-[0.65rem] sm:text-xs mt-1 uppercase tracking-wider font-bold"
+                  style="color: var(--text-subtle);">Custom Built</div>
               </div>
               <div>
-                <div class="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-primary">2025</div>
-                <div class="text-[0.65rem] sm:text-xs text-muted mt-1 uppercase tracking-wider font-bold">Founded</div>
+                <div class="font-heading font-extrabold text-2xl sm:text-3xl" style="color: var(--primary);">7+</div>
+                <div class="text-[0.65rem] sm:text-xs mt-1 uppercase tracking-wider font-bold"
+                  style="color: var(--text-subtle);">Core Services</div>
               </div>
             </div>
           </div>
 
-          <!-- Hero Right Column: 3D Illuminated Logo Showcase -->
-          <div class="lg:col-span-5 hero-reveal flex justify-center items-center w-full mt-4 lg:mt-0">
-            <div class="logo-showcase-wrap relative w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-md mx-auto">
-              <div class="logo-orb"></div>
-              <div id="heroLogoCard"
-                class="logo-card relative rounded-20 overflow-hidden glass shadow-2xl gradient-border p-3 sm:p-5 md:p-6 w-full">
-                <div
-                  class="w-full rounded-20 overflow-hidden relative bg-[#09090b]/90 backdrop-blur-md border border-primary/20 flex flex-col items-center justify-center p-5 sm:p-7 md:p-8 text-center">
-                  <img id="heroLogoImg" src="assets/logo-full.png" alt="BegiNo Tech — Ideas • Designs • Solutions"
-                    class="w-full max-w-[220px] sm:max-w-[280px] md:max-w-[320px] h-auto object-contain drop-shadow-[0_0_35px_rgba(168,85,247,0.5)] transition-transform duration-500 hover:scale-105"
-                    loading="eager" />
+          <!-- Hero Right: Interactive Product Element -->
+          <div class="lg:col-span-5 hero-reveal flex justify-center items-center w-full mt-6 lg:mt-0">
+            <div class="hero-interactive">
+              <!-- Floating notification -->
+              <div class="hero-notif" id="heroNotif">
+                <span class="hero-notif-dot"></span>
+                <span>Build deployed successfully</span>
+              </div>
+
+              <!-- Brand preview -->
+              <div class="hero-screen" id="heroScreen" role="button" tabindex="0" aria-pressed="false"
+                aria-label="Flip BegiNo Tech preview card">
+                <div class="hero-screen-inner">
+                  <div class="hero-screen-face hero-screen-front">
+                    <div class="hero-screen-bar">
+                      <div class="flex items-center gap-1.5">
+                        <span class="hero-screen-dot" style="background: #FF5F57;"></span>
+                        <span class="hero-screen-dot" style="background: #FEBC2E;"></span>
+                        <span class="hero-screen-dot" style="background: #28C840;"></span>
+                      </div>
+                      <div class="hero-brand-name">
+                        <img src="assets/logo-mark.png" alt="" />
+                        <span>Begi<span class="grad-text">No</span> Tech</span>
+                      </div>
+                    </div>
+                    <div class="hero-screen-body hero-brand-body">
+                      <img src="assets/logo-full.png" alt="BegiNo Tech - Ideas, Designs, Solutions" loading="eager" />
+                    </div>
+                  </div>
+
+                  <div class="hero-screen-face hero-screen-back">
+                    <div class="hero-screen-bar">
+                      <span class="hero-command-label">beginotech.dev</span>
+                      <span class="hero-command-status">LIVE</span>
+                    </div>
+                    <div class="hero-command-body">
+                      <div><span class="command-prompt">$</span> start build</div>
+                      <div class="command-muted">Building your website...</div>
+                      <div class="command-success">[OK] Plan ready</div>
+                      <div class="command-success">[OK] Design ready</div>
+                      <div class="command-success">[OK] Website is live</div>
+                      <div class="command-muted">Speed score: <strong>98/100</strong></div>
+                      <div><span class="command-prompt">$</span> grow with BegiNo Tech</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mini dashboard -->
+              <div class="hero-dash" id="heroDash">
+                <div class="hero-dash-label">Performance Score</div>
+                <div class="hero-dash-value">
+                  <span id="perfScore">98</span><span class="up">↑ 12%</span>
                 </div>
               </div>
             </div>
@@ -304,130 +289,103 @@
       </div>
     </section>
 
-    <!-- ============ ABOUT SECTION ============ -->
-    <section id="about" class="section-pad relative bg-surface">
-      <div class="max-w-7xl mx-auto px-5 md:px-10 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-        <div class="lg:col-span-7" data-aos="fade-right">
-          <span class="eyebrow">Who We Are</span>
-          <h2 class="font-heading font-bold mt-4 leading-tight text-2xl sm:text-3xl md:text-4xl">
-            A young studio powered by <span class="grad-text">Ideas, Designs & Solutions.</span>
-          </h2>
-          <p class="mt-5 text-muted text-base leading-relaxed">
-            BegiNo Tech is a modern digital agency built by creators and strategists who understand how attention is
-            captured and converted in today's digital landscape. We bring relentless energy, obsessive attention to
-            detail, and a strategic framework to every partnership.
-          </p>
-          <p class="mt-3 text-muted text-base leading-relaxed">
-            Whether engineering responsive web applications, shaping high-impact brand identities, or launching
-            performance-driven Meta & Google ad campaigns, we dedicate our full focus to driving measurable results for
-            your business.
-          </p>
-
-          <div class="mt-8 grid sm:grid-cols-2 gap-5">
-            <div class="flex items-start gap-3.5">
-              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <i data-lucide="lightbulb" class="w-4.5 h-4.5 text-primary"></i>
-              </div>
-              <div>
-                <h3 class="font-heading font-semibold text-sm">Strategic Ideas</h3>
-                <p class="text-xs text-muted mt-0.5 leading-relaxed">Custom roadmaps crafted for maximum market impact
-                  and revenue.</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3.5">
-              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <i data-lucide="palette" class="w-4.5 h-4.5 text-primary"></i>
-              </div>
-              <div>
-                <h3 class="font-heading font-semibold text-sm">Distinct Designs</h3>
-                <p class="text-xs text-muted mt-0.5 leading-relaxed">Conversion UI/UX and unforgettable visual identity
-                  systems.</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3.5">
-              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <i data-lucide="cpu" class="w-4.5 h-4.5 text-primary"></i>
-              </div>
-              <div>
-                <h3 class="font-heading font-semibold text-sm">Scalable Solutions</h3>
-                <p class="text-xs text-muted mt-0.5 leading-relaxed">Full-stack web engineering, SEO, and targeted ad
-                  campaigns.</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3.5">
-              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <i data-lucide="heart-handshake" class="w-4.5 h-4.5 text-primary"></i>
-              </div>
-              <div>
-                <h3 class="font-heading font-semibold text-sm">Honest Partnership</h3>
-                <p class="text-xs text-muted mt-0.5 leading-relaxed">Direct communication, clear performance metrics,
-                  zero fluff.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- About Right Column: Agency Highlights -->
-        <div class="lg:col-span-5 space-y-5" data-aos="fade-left">
-          <div class="glass rounded-20 p-6 md:p-8 gradient-border relative overflow-hidden">
-            <div class="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <i data-lucide="compass" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading font-bold text-lg mb-2">Our Vision</h3>
-            <p class="text-xs sm:text-sm text-muted leading-relaxed">
-              To be the digital growth partner ambitious brands trust from day one — recognized for precision
-              engineering, innovative design, and transparent results.
-            </p>
-          </div>
-
-          <div class="glass rounded-20 p-6 md:p-8 gradient-border relative overflow-hidden">
-            <div class="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <i data-lucide="award" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading font-bold text-lg mb-2">Our Commitment</h3>
-            <p class="text-xs sm:text-sm text-muted leading-relaxed">
-              Every client gets bespoke strategy, direct founder communication, clean maintainable code, and
-              high-converting creative assets built to scale.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
     <!-- ============ SERVICES SECTION ============ -->
     <section id="services" class="section-pad relative">
       <div class="max-w-7xl mx-auto px-5 md:px-10">
-        <div class="text-center max-w-xl mx-auto" data-aos="fade-up">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
           <span class="eyebrow">Our Capabilities</span>
-          <h2 class="font-heading font-bold mt-4">
-            End-to-end digital solutions <span class="grad-text">built to scale.</span>
+          <h2 class="font-heading font-bold mt-5">
+            End-to-end digital solutions<br /><span class="grad-text">engineered to perform.</span>
           </h2>
-          <p class="mt-3 text-muted text-sm">
-            Core digital disciplines that directly impact brand growth and customer acquisition.
+          <p class="mt-3 text-sm" style="color: var(--text-muted);">
+            Each service demonstrates real capability — not just descriptions.
           </p>
         </div>
 
-        <!-- Rendered dynamically via script.js -->
-        <div id="servicesGrid" class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        <!-- Interactive Services Grid -->
+        <div id="servicesGrid" class="mt-12 grid md:grid-cols-2 gap-6">
+          <!-- Rendered dynamically via script.js -->
+        </div>
       </div>
     </section>
 
     <!-- ============ PROCESS SECTION ============ -->
-    <section id="process" class="section-pad relative bg-surface">
+    <section id="process" class="section-pad relative bg-surface" style="border-top: 1px solid var(--border);">
       <div class="max-w-7xl mx-auto px-5 md:px-10">
         <div class="text-center max-w-xl mx-auto" data-aos="fade-up">
           <span class="eyebrow">How We Work</span>
-          <h2 class="font-heading font-bold mt-4">
-            A transparent framework for <span class="grad-text">repeatable results.</span>
+          <h2 class="font-heading font-bold mt-5">
+            A clear path from idea<br /><span class="grad-text">to launch and beyond.</span>
           </h2>
-          <p class="mt-3 text-muted text-sm">
-            Agile, collaborative, and focused on momentum from day one.
+          <p class="mt-3 text-sm" style="color: var(--text-muted);">
+            Transparent, agile, and focused on momentum from day one.
           </p>
         </div>
 
-        <!-- Rendered dynamically via script.js -->
-        <div id="processGrid" class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        <div class="mt-14" data-aos="fade-up">
+          <div class="process-timeline" id="processTimeline">
+            <div class="process-timeline-progress" id="processProgress"></div>
+
+            <div class="process-step" data-step="1">
+              <div class="process-step-num">1</div>
+              <div>
+                <div class="process-step-title">Discover</div>
+                <div class="process-step-desc">Deep dive into your goals, audience, and competitive landscape.</div>
+              </div>
+            </div>
+
+            <div class="process-step" data-step="2">
+              <div class="process-step-num">2</div>
+              <div>
+                <div class="process-step-title">Design</div>
+                <div class="process-step-desc">Conversion-focused UI/UX with visual assets and prototypes.</div>
+              </div>
+            </div>
+
+            <div class="process-step" data-step="3">
+              <div class="process-step-num">3</div>
+              <div>
+                <div class="process-step-title">Build</div>
+                <div class="process-step-desc">Clean, scalable code with continuous testing and QA.</div>
+              </div>
+            </div>
+
+            <div class="process-step" data-step="4">
+              <div class="process-step-num">4</div>
+              <div>
+                <div class="process-step-title">Launch</div>
+                <div class="process-step-desc">Deploy to production, monitor analytics and performance.</div>
+              </div>
+            </div>
+
+            <div class="process-step" data-step="5">
+              <div class="process-step-num">5</div>
+              <div>
+                <div class="process-step-title">Grow</div>
+                <div class="process-step-desc">Optimize based on real data for sustained growth.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TECH STACK SECTION ============ -->
+    <section id="tech" class="py-14 md:py-20 relative overflow-hidden"
+      style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="max-w-7xl mx-auto px-5 md:px-10">
+        <div class="text-center mb-10" data-aos="fade-up">
+          <span class="eyebrow">Technology Stack</span>
+          <h2 class="font-heading font-bold mt-5">
+            Built with <span class="grad-text">modern tools.</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="overflow-hidden">
+        <div class="tech-strip" id="techStrip">
+          <!-- Populated by JS (duplicated for seamless scroll) -->
+        </div>
       </div>
     </section>
 
@@ -436,94 +394,102 @@
       <div class="max-w-7xl mx-auto px-5 md:px-10">
         <div class="text-center max-w-xl mx-auto" data-aos="fade-up">
           <span class="eyebrow">Portfolio</span>
-          <h2 class="font-heading font-bold mt-4">
-            Featured work & <span class="grad-text">case studies.</span>
+          <h2 class="font-heading font-bold mt-5">
+            Featured work &<br /><span class="grad-text">case studies.</span>
           </h2>
-          <p class="mt-3 text-muted text-sm">
-            A sample of high-impact digital products and campaigns crafted for our clients.
+          <p class="mt-3 text-sm" style="color: var(--text-muted);">
+            High-impact digital products crafted for our clients.
           </p>
         </div>
 
-        <!-- Featured Projects Grid -->
         <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="lift-card glass rounded-20 overflow-hidden gradient-border flex flex-col" data-aos="fade-up"
-            data-aos-delay="0">
-            <div
-              class="h-48 bg-surface-3 flex items-center justify-center border-b border-border relative overflow-hidden group">
-              <div
-                class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              </div>
-              <i data-lucide="layout"
-                class="w-12 h-12 text-primary/40 group-hover:scale-110 transition-transform duration-300"></i>
-            </div>
-            <div class="p-6 flex flex-col flex-1">
-              <div class="flex items-center gap-2 mb-2">
-                <span
-                  class="text-[0.6875rem] font-bold uppercase tracking-wider text-primary px-2.5 py-0.5 rounded-full bg-primary/10">Web
-                  Dev</span>
-                <span class="text-[0.6875rem] text-muted">E-Commerce</span>
-              </div>
-              <h3 class="font-heading font-bold text-lg mb-2">OmniCommerce Platform</h3>
-              <p class="text-xs text-muted leading-relaxed mb-4">High-performance e-commerce storefront with sub-second
-                page loads and optimized checkout flows.</p>
-              <div
-                class="mt-auto pt-4 border-t border-border flex items-center justify-between text-xs font-semibold text-primary">
-                <span>+140% Conversion Rate</span>
-                <i data-lucide="trending-up" class="w-4 h-4"></i>
+          <!-- Project 1 -->
+          <div class="portfolio-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="portfolio-preview">
+              <img class="portfolio-image" src="assets/portfolio-commerce.jpg"
+                alt="Online commerce dashboard on a laptop" loading="lazy" />
+              <div class="portfolio-preview-icon">
+                <i data-lucide="layout" class="w-8 h-8"></i>
               </div>
             </div>
-          </div>
-
-          <div class="lift-card glass rounded-20 overflow-hidden gradient-border flex flex-col" data-aos="fade-up"
-            data-aos-delay="100">
-            <div
-              class="h-48 bg-surface-3 flex items-center justify-center border-b border-border relative overflow-hidden group">
-              <div
-                class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="portfolio-body">
+              <span class="portfolio-tag">Web Development</span>
+              <h3 class="font-heading">OmniCommerce Platform</h3>
+              <p style="color: var(--text-muted);">
+                <strong style="color: var(--text);">Challenge:</strong> Build a high-performance e-commerce storefront.
+                <strong style="color: var(--text);">Solution:</strong> Sub-second page loads with optimized checkout flows.
+              </p>
+              <div class="portfolio-tech">
+                <span>React</span>
+                <span>Node.js</span>
+                <span>Stripe</span>
+                <span>AWS</span>
               </div>
-              <i data-lucide="target"
-                class="w-12 h-12 text-primary/40 group-hover:scale-110 transition-transform duration-300"></i>
-            </div>
-            <div class="p-6 flex flex-col flex-1">
-              <div class="flex items-center gap-2 mb-2">
-                <span
-                  class="text-[0.6875rem] font-bold uppercase tracking-wider text-primary px-2.5 py-0.5 rounded-full bg-primary/10">Performance</span>
-                <span class="text-[0.6875rem] text-muted">Meta & Google Ads</span>
-              </div>
-              <h3 class="font-heading font-bold text-lg mb-2">Direct-to-Consumer Growth</h3>
-              <p class="text-xs text-muted leading-relaxed mb-4">Multi-channel paid acquisition strategy scaling monthly
-                recurring revenue with high ROAS.</p>
-              <div
-                class="mt-auto pt-4 border-t border-border flex items-center justify-between text-xs font-semibold text-primary">
-                <span>4.8x Return on Ad Spend</span>
-                <i data-lucide="activity" class="w-4 h-4"></i>
+              <div class="portfolio-footer">
+                <span class="text-xs font-bold" style="color: var(--primary);">+140% Conversion Rate</span>
+                <a href="#contact" class="service-link text-xs">
+                  View Details <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                </a>
               </div>
             </div>
           </div>
 
-          <div class="lift-card glass rounded-20 overflow-hidden gradient-border flex flex-col" data-aos="fade-up"
-            data-aos-delay="200">
-            <div
-              class="h-48 bg-surface-3 flex items-center justify-center border-b border-border relative overflow-hidden group">
-              <div
-                class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <!-- Project 2 -->
+          <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="portfolio-preview">
+              <img class="portfolio-image" src="assets/portfolio-marketing.jpg"
+                alt="Digital marketing analytics dashboard" loading="lazy" />
+              <div class="portfolio-preview-icon">
+                <i data-lucide="target" class="w-8 h-8"></i>
               </div>
-              <i data-lucide="sparkles"
-                class="w-12 h-12 text-primary/40 group-hover:scale-110 transition-transform duration-300"></i>
             </div>
-            <div class="p-6 flex flex-col flex-1">
-              <div class="flex items-center gap-2 mb-2">
-                <span
-                  class="text-[0.6875rem] font-bold uppercase tracking-wider text-primary px-2.5 py-0.5 rounded-full bg-primary/10">Branding</span>
-                <span class="text-[0.6875rem] text-muted">Visual Identity</span>
+            <div class="portfolio-body">
+              <span class="portfolio-tag">Performance Marketing</span>
+              <h3 class="font-heading">Direct-to-Consumer Growth</h3>
+              <p style="color: var(--text-muted);">
+                <strong style="color: var(--text);">Challenge:</strong> Scale monthly recurring revenue through paid channels.
+                <strong style="color: var(--text);">Solution:</strong> Multi-channel acquisition with high ROAS.
+              </p>
+              <div class="portfolio-tech">
+                <span>Meta Ads</span>
+                <span>Google Ads</span>
+                <span>Analytics</span>
               </div>
-              <h3 class="font-heading font-bold text-lg mb-2">Apex Fintech Rebrand</h3>
-              <p class="text-xs text-muted leading-relaxed mb-4">Complete brand architecture, design system, UI
-                components, and investor deck design.</p>
-              <div
-                class="mt-auto pt-4 border-t border-border flex items-center justify-between text-xs font-semibold text-primary">
-                <span>Series A Funded</span>
-                <i data-lucide="check-circle" class="w-4 h-4"></i>
+              <div class="portfolio-footer">
+                <span class="text-xs font-bold" style="color: var(--primary);">4.8x Return on Ad Spend</span>
+                <a href="#contact" class="service-link text-xs">
+                  View Details <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="portfolio-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="portfolio-preview">
+              <img class="portfolio-image" src="assets/portfolio-branding.jpg"
+                alt="Creative team working on a brand design project" loading="lazy" />
+              <div class="portfolio-preview-icon">
+                <i data-lucide="sparkles" class="w-8 h-8"></i>
+              </div>
+            </div>
+            <div class="portfolio-body">
+              <span class="portfolio-tag">Branding & Design</span>
+              <h3 class="font-heading">Apex Fintech Rebrand</h3>
+              <p style="color: var(--text-muted);">
+                <strong style="color: var(--text);">Challenge:</strong> Create a complete brand architecture for a fintech startup.
+                <strong style="color: var(--text);">Solution:</strong> Design system, UI components, and investor deck.
+              </p>
+              <div class="portfolio-tech">
+                <span>Figma</span>
+                <span>Brand System</span>
+                <span>UI/UX</span>
+              </div>
+              <div class="portfolio-footer">
+                <span class="text-xs font-bold" style="color: var(--primary);">Series A Funded</span>
+                <a href="#contact" class="service-link text-xs">
+                  View Details <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -532,95 +498,57 @@
     </section>
 
     <!-- ============ WHY US SECTION ============ -->
-    <section id="why" class="section-pad relative bg-surface">
+    <section id="why" class="section-pad relative bg-surface" style="border-top: 1px solid var(--border);">
       <div class="max-w-7xl mx-auto px-5 md:px-10">
-        <div class="text-center max-w-xl mx-auto" data-aos="fade-up">
+        <div class="text-center max-w-xl mx-auto mb-10" data-aos="fade-up">
           <span class="eyebrow">Why BegiNo Tech</span>
-          <h2 class="font-heading font-bold mt-4">
-            Built different. <span class="grad-text">Engineered to deliver.</span>
+          <h2 class="font-heading font-bold mt-5">
+            Built different.<br /><span class="grad-text">Engineered to deliver.</span>
           </h2>
-          <p class="mt-3 text-muted text-sm">
+          <p class="mt-3 text-sm" style="color: var(--text-muted);">
             We operate as an extension of your team with uncompromised focus.
           </p>
         </div>
+      </div>
 
-        <div id="whyGrid" class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div class="lift-card gradient-border glass rounded-20 p-6 flex flex-col" data-aos="fade-up"
-            data-aos-delay="0">
-            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <i data-lucide="zap" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading font-semibold text-base mb-2">Speed & Agility</h3>
-            <p class="text-xs text-muted leading-relaxed">No bureaucratic bloat. Rapid turnarounds, fast iteration
-              cycles, and immediate responsiveness.</p>
-          </div>
-
-          <div class="lift-card gradient-border glass rounded-20 p-6 flex flex-col" data-aos="fade-up"
-            data-aos-delay="100">
-            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading font-semibold text-base mb-2">Data-Driven Strategy</h3>
-            <p class="text-xs text-muted leading-relaxed">Every decision is backed by analytics, audience data, and
-              rigorous market testing.</p>
-          </div>
-
-          <div class="lift-card gradient-border glass rounded-20 p-6 flex flex-col" data-aos="fade-up"
-            data-aos-delay="200">
-            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <i data-lucide="layers" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading font-semibold text-base mb-2">Full-Stack Execution</h3>
-            <p class="text-xs text-muted leading-relaxed">From visual identity and frontend code to paid media
-              management under one roof.</p>
-          </div>
-
-          <div class="lift-card gradient-border glass rounded-20 p-6 flex flex-col" data-aos="fade-up"
-            data-aos-delay="300">
-            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <i data-lucide="shield-check" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading font-semibold text-base mb-2">Founder-Led Focus</h3>
-            <p class="text-xs text-muted leading-relaxed">You work directly with the creators and strategists building
-              your product, not junior middlemen.</p>
-          </div>
+      <div class="why-scroll-container" data-aos="fade-up">
+        <div class="why-scroll-track" id="whyTrack">
+          <!-- Populated by JS (duplicated for seamless scroll) -->
         </div>
       </div>
     </section>
 
     <!-- ============ CTA BANNER ============ -->
-    <section class="py-16 md:py-24 relative overflow-hidden">
-      <div class="max-w-5xl mx-auto px-5 md:px-10 text-center" data-aos="fade-up">
-        <span class="eyebrow">Ready to Scale?</span>
-        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl mt-4 max-w-3xl mx-auto leading-tight">
-          Let's transform your ideas into <span class="grad-text">measurable results.</span>
+    <section class="cta-banner py-16 md:py-24 relative overflow-hidden">
+      <div class="max-w-5xl mx-auto px-5 md:px-10 text-center relative z-10" data-aos="fade-up">
+        <span class="eyebrow">Ready to Build?</span>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl mt-5 max-w-3xl mx-auto leading-tight">
+          Let's transform your ideas into<br /><span class="grad-text">scalable products.</span>
         </h2>
-        <p class="mt-4 text-muted text-base max-w-xl mx-auto">
-          Partner with BegiNo Tech and get custom web development and performance marketing engineered for growth.
+        <p class="mt-4 text-base max-w-xl mx-auto" style="color: var(--text-muted);">
+          Partner with BegiNo Tech and get engineering-first development and performance marketing built for growth.
         </p>
         <div class="mt-8 flex flex-wrap justify-center items-center gap-4">
-          <a href="https://wa.me/916381167474" target="_blank" rel="noopener noreferrer"
-            class="btn-grad px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-sm font-bold">
+          <a href="https://whatsapp.com/channel/0029VbD3L5zLY6dE0kar6X3B" target="_blank" rel="noopener noreferrer"
+            class="btn-primary px-8 py-3.5 text-sm">
             Chat on WhatsApp <i data-lucide="message-circle" class="w-4 h-4"></i>
           </a>
-          <a href="#contact"
-            class="glass px-8 py-3.5 rounded-full text-sm font-bold hover:border-primary/40 transition-colors"
-            style="color: var(--text);">
-            Contact Form <i data-lucide="arrow-down" class="w-3.5 h-3.5 inline-block ml-1"></i>
+          <a href="#contact" class="btn-secondary px-8 py-3.5 text-sm">
+            Contact Form <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
           </a>
         </div>
       </div>
     </section>
 
     <!-- ============ CONTACT SECTION ============ -->
-    <section id="contact" class="section-pad relative">
+    <section id="contact" class="section-pad relative" style="border-top: 1px solid var(--border);">
       <div class="max-w-5xl mx-auto px-5 md:px-10">
         <div class="text-center max-w-xl mx-auto" data-aos="fade-up">
           <span class="eyebrow">Get In Touch</span>
-          <h2 class="font-heading font-bold mt-4">
-            Let's make something <span class="grad-text">worth talking about.</span>
+          <h2 class="font-heading font-bold mt-5">
+            Let's build something<br /><span class="grad-text">worth talking about.</span>
           </h2>
-          <p class="mt-3 text-muted text-sm">
+          <p class="mt-3 text-sm" style="color: var(--text-muted);">
             Tell us about your project. We read and respond to every message personally.
           </p>
         </div>
@@ -628,7 +556,8 @@
         <div class="mt-10 grid lg:grid-cols-3 gap-6">
           <!-- Form Area -->
           <div class="lg:col-span-2" data-aos="fade-right">
-            <form id="contactForm" class="glass rounded-20 p-6 md:p-8 gradient-border space-y-5">
+            <form id="contactForm" class="p-6 md:p-8 space-y-5"
+              style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl);">
               <div class="grid sm:grid-cols-2 gap-5">
                 <div class="field-wrap">
                   <i data-lucide="user" class="field-icon w-4 h-4"></i>
@@ -653,11 +582,14 @@
                     <i data-lucide="layers" class="field-icon w-4 h-4"></i>
                     <select id="service" class="field appearance-none">
                       <option value="Web Development">Web Development</option>
+                      <option value="Mobile App Development">Mobile App Development</option>
+                      <option value="SaaS / AI Solutions">SaaS / AI Solutions</option>
+                      <option value="UI/UX Design">UI/UX Design</option>
                       <option value="Digital Marketing">Digital Marketing</option>
-                      <option value="Graphic Design">Graphic Design</option>
                       <option value="Meta Ads">Meta Ads</option>
                       <option value="Google Ads">Google Ads</option>
                       <option value="SEO">SEO</option>
+                      <option value="Automation">Automation</option>
                       <option value="Other">Other Inquiry</option>
                     </select>
                   </div>
@@ -669,8 +601,7 @@
                 <label for="message" class="field-label">Project Details *</label>
               </div>
 
-              <button type="submit" data-cursor-text="Send"
-                class="btn-grad px-8 py-3.5 rounded-full w-full sm:w-auto text-sm font-bold">
+              <button type="submit" class="btn-primary px-8 py-3.5 w-full sm:w-auto text-sm">
                 Send via WhatsApp <i data-lucide="send" class="w-3.5 h-3.5"></i>
               </button>
               <p id="formNote" class="text-xs mt-1"></p>
@@ -679,46 +610,42 @@
 
           <!-- Contact Info Sidebar -->
           <div data-aos="fade-left" class="space-y-5">
-            <div class="glass rounded-20 p-6 gradient-border">
+            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 1.5rem;">
               <h3 class="font-heading font-bold text-base mb-5">Contact Information</h3>
               <div class="space-y-4 text-sm">
-                <a href="tel:+916381167474"
-                  class="flex items-center gap-3 text-muted hover:text-primary transition-colors">
-                  <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                <a href="tel:+916381167474" class="contact-method">
+                  <div class="contact-method-icon">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
                   </div>
-                  <span>+91 63811 67474</span>
+                  <span style="color: var(--text-muted);">+91 63811 67474</span>
                 </a>
-                <a href="tel:+919080203398"
-                  class="flex items-center gap-3 text-muted hover:text-primary transition-colors">
-                  <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                <a href="tel:+919080203398" class="contact-method">
+                  <div class="contact-method-icon">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
                   </div>
-                  <span>+91 90802 03398</span>
+                  <span style="color: var(--text-muted);">+91 90802 03398</span>
                 </a>
-                <a href="mailto:info.beginotech@gmail.com"
-                  class="flex items-center gap-3 text-muted hover:text-primary transition-colors break-all">
-                  <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                <a href="mailto:info.beginotech@gmail.com" class="contact-method">
+                  <div class="contact-method-icon">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
                   </div>
-                  <span class="text-xs">info.beginotech@gmail.com</span>
+                  <span class="text-xs" style="color: var(--text-muted);">info.beginotech@gmail.com</span>
                 </a>
-                <div class="flex items-center gap-3 text-muted">
-                  <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                <div class="contact-method" style="cursor: default;">
+                  <div class="contact-method-icon">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
                   </div>
-                  <span>Madurai – Paramakudi, IN</span>
+                  <span style="color: var(--text-muted);">Madurai – Paramakudi, IN</span>
                 </div>
               </div>
             </div>
 
-            <!-- Verified Social Links -->
-            <div class="glass rounded-20 p-6 gradient-border">
+            <!-- Social Links -->
+            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 1.5rem;">
               <h3 class="font-heading font-semibold text-sm mb-3">Follow Along</h3>
               <div class="flex flex-wrap gap-2.5">
-                <a href="https://instagram.com/beginotech" target="_blank" rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  class="social-icon w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                <a href="https://www.instagram.com/beginotech_marketing?igsh=MWx4NWRtcXNraG12bw==" target="_blank" rel="noopener noreferrer"
+                  aria-label="Instagram" class="social-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="w-4 h-4">
                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -726,30 +653,28 @@
                     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                   </svg>
                 </a>
-                <a href="https://facebook.com/beginotech" target="_blank" rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  class="social-icon w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                <a href="https://www.facebook.com/share/1cse7wS629/" target="_blank" rel="noopener noreferrer"
+                  aria-label="Facebook" class="social-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="w-4 h-4">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                   </svg>
                 </a>
-                <a href="https://wa.me/916381167474" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
-                  class="social-icon w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                <a href="https://whatsapp.com/channel/0029VbD3L5zLY6dE0kar6X3B" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+                  class="social-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="w-4 h-4">
                     <path
                       d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
                   </svg>
                 </a>
-                <a href="https://pinterest.com/beginotech" target="_blank" rel="noopener noreferrer"
-                  aria-label="Pinterest"
-                  class="social-icon w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                <a href="https://linkedin.com/company/beginotech" target="_blank" rel="noopener noreferrer"
+                  aria-label="LinkedIn" class="social-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="w-4 h-4">
-                    <path d="M8 20l4 -9" />
-                    <path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" />
-                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect width="4" height="12" x="2" y="9" />
+                    <circle cx="4" cy="4" r="2" />
                   </svg>
                 </a>
               </div>
@@ -762,70 +687,77 @@
   </main>
 
   <!-- ============ FOOTER ============ -->
-  <footer class="bg-surface border-t border-border pt-12 pb-6 text-sm">
+  <footer class="bg-surface pt-12 pb-6 text-sm" style="border-top: 1px solid var(--border);">
     <div class="max-w-7xl mx-auto px-5 md:px-10">
-      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-border">
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 pb-10"
+        style="border-bottom: 1px solid var(--border);">
         <div>
           <a href="#home" class="flex items-center gap-3 mb-3">
             <img src="assets/logo-mark.png" alt="BegiNo Tech"
-              class="w-8 h-8 rounded-lg object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" loading="lazy" />
+              class="w-8 h-8 rounded-lg object-contain" loading="lazy" />
             <div class="flex flex-col">
               <span class="font-heading font-bold text-base leading-none" style="color: var(--text);">Begi<span
                   class="grad-text font-extrabold ml-0.5">No</span> Tech</span>
-              <span class="text-[0.55rem] tracking-wider text-muted uppercase font-semibold mt-0.5">Ideas • Designs •
-                Solutions</span>
+              <span class="text-[0.55rem] tracking-wider uppercase font-semibold mt-0.5"
+                style="color: var(--text-subtle);">Ideas • Designs • Solutions</span>
             </div>
           </a>
-          <p class="text-muted text-xs leading-relaxed">
-            A digital agency engineered for growth-minded brands. Transforming bold ideas into high-converting designs
-            and scalable technology solutions.
+          <p class="text-xs leading-relaxed" style="color: var(--text-muted);">
+            A technology company engineered for growth-minded brands. Building scalable digital products
+            and driving measurable results.
           </p>
         </div>
 
         <div>
           <h4 class="font-heading font-semibold mb-3">Navigation</h4>
-          <ul class="space-y-2 text-muted">
-            <li><a href="#about" class="hover:text-primary transition-colors">About Us</a></li>
-            <li><a href="#services" class="hover:text-primary transition-colors">Services</a></li>
-            <li><a href="#process" class="hover:text-primary transition-colors">Process</a></li>
-            <li><a href="#work" class="hover:text-primary transition-colors">Selected Work</a></li>
-            <li><a href="#why" class="hover:text-primary transition-colors">Why BegiNo Tech</a></li>
-            <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+          <ul class="space-y-2" style="color: var(--text-muted);">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#work">Selected Work</a></li>
+            <li><a href="#why">Why BegiNo Tech</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="font-heading font-semibold mb-3">Capabilities</h4>
-          <ul class="space-y-2 text-muted">
-            <li><a href="#services" class="hover:text-primary transition-colors">Web Development</a></li>
-            <li><a href="#services" class="hover:text-primary transition-colors">Digital Marketing</a></li>
-            <li><a href="#services" class="hover:text-primary transition-colors">Graphic Design</a></li>
-            <li><a href="#services" class="hover:text-primary transition-colors">Meta Ads</a></li>
-            <li><a href="#services" class="hover:text-primary transition-colors">Google Ads</a></li>
-            <li><a href="#services" class="hover:text-primary transition-colors">SEO Optimization</a></li>
+          <ul class="space-y-2" style="color: var(--text-muted);">
+            <li><a href="#services">Web Development</a></li>
+            <li><a href="#services">Mobile Apps</a></li>
+            <li><a href="#services">SaaS / AI</a></li>
+            <li><a href="#services">UI/UX Design</a></li>
+            <li><a href="#services">Digital Marketing</a></li>
+            <li><a href="#services">SEO & Automation</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="font-heading font-semibold mb-3">Get In Touch</h4>
-          <ul class="space-y-2 text-muted">
-            <li>+91 63811 67474</li>
-            <li class="text-xs">info.beginotech@gmail.com</li>
+          <ul class="space-y-2" style="color: var(--text-muted);">
+            <li><a href="tel:+916381167474">+91 63811 67474</a></li>
+            <li><a href="tel:+919080203398">+91 90802 03398</a></li>
+            <li class="text-xs"><a href="mailto:info.beginotech@gmail.com">info.beginotech@gmail.com</a></li>
             <li>Madurai – Paramakudi, IN</li>
           </ul>
           <div class="mt-3 flex items-center gap-2.5">
-            <a href="https://instagram.com/beginotech" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-              class="hover:text-primary transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="https://www.instagram.com/beginotech_marketing?igsh=MWx4NWRtcXNraG12bw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+              style="color: var(--text-muted); transition: color 0.3s ease;">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
             <a href="https://linkedin.com/company/beginotech" target="_blank" rel="noopener noreferrer"
-              aria-label="LinkedIn" class="hover:text-primary transition-colors"><i data-lucide="linkedin"
-                class="w-4 h-4"></i></a>
-            <a href="https://pinterest.com/beginotech" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"
-              class="hover:text-primary transition-colors"><i data-lucide="share-2" class="w-4 h-4"></i></a>
+              aria-label="LinkedIn" style="color: var(--text-muted); transition: color 0.3s ease;">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1cse7wS629/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+              style="color: var(--text-muted); transition: color 0.3s ease;">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
           </div>
         </div>
       </div>
 
-      <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-subtle gap-3">
+      <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs gap-3"
+        style="color: var(--text-subtle);">
         <p>&copy; 2026 BegiNo Tech. All rights reserved.</p>
         <p>Crafted with precision for the modern digital era.</p>
       </div>
@@ -833,7 +765,7 @@
   </footer>
 
   <!-- Floating Buttons -->
-  <a href="https://wa.me/916381167474" target="_blank" rel="noopener noreferrer" id="floatingWhatsapp"
+  <a href="https://whatsapp.com/channel/0029VbD3L5zLY6dE0kar6X3B" target="_blank" rel="noopener noreferrer" id="floatingWhatsapp"
     aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
       <path
